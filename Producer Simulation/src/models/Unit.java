@@ -1,18 +1,18 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Queue;
+
 public class Unit {
 	
-	private ArrayList<Queue<Product>> FactoryQueues ;
+	private ArrayList<UnitQueue> FactoryQueues ;
 	private ArrayList<Machine> FactoryMachines ;
 	
 	public Unit() {
-		FactoryQueues = new ArrayList<Queue<Product>>();
+		FactoryQueues = new ArrayList<UnitQueue>();
 		FactoryMachines = new ArrayList<Machine>();
 	}
 	
-	public void addQueue(Queue<Product> q) {
+	public void addQueue(UnitQueue q) {
 		FactoryQueues.add(q);
 	}
 	
@@ -24,8 +24,17 @@ public class Unit {
 		return this.FactoryQueues.size();
 	}
 	
-	public boolean isEmptyQueue() {
+	public boolean isEmptyQueues() {
 		return this.FactoryQueues.size() == 0;
+	}
+	
+	public UnitQueue getQueue (String Name) {
+		for (int i = 0 ; i < FactoryQueues.size();i++ ) {
+			if (FactoryQueues.get(i).getName().equalsIgnoreCase(Name)) {
+				return FactoryQueues.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public void addMachine(Machine m) {
