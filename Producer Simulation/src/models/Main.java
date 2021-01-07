@@ -11,7 +11,7 @@ public class Main {
 		UnitBuilder ub = new UnitBuilder();
 		ub.CreateMachine("ahmed", 50 , "q0", "q1");
 		ub.CreateMachine("bbb", 40, "q1", "q2");
-		ub.CreateMachine("cccc", 20, "q2", "q3");
+		ub.CreateMachine("cccc", 20, "q1", "q3");
 		//ub.CreateMachine("ddd", 10, "q3", "q2");
 		Unit u = ub.toUnit();
 		BlockingQueue<Product> productsQueue = new ArrayBlockingQueue<Product>(10);

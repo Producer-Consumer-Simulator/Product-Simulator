@@ -10,6 +10,7 @@ public class UnitQueue {
 	private String Name;
 	private BlockingQueue<Product> productsQueue;
 	private ArrayList<Machine> availableMachines;
+	public boolean lastQueue = false;
 	//private ArrayList<Thread> availableMachinesThreads;
 	//private ArrayList<Machine> notAvailableMachines;
 	
@@ -53,7 +54,7 @@ public class UnitQueue {
 		// check available
 		// check machine
 		//for
-		while (!this.productsQueue.isEmpty()) {
+		while (!this.productsQueue.isEmpty()&& !this.lastQueue) {
 			/*while(this.productsQueue.poll() == null ) {
 				try {
 					wait();
@@ -63,12 +64,14 @@ public class UnitQueue {
 			}*/
 			Product product = this.productsQueue.peek();
 			if(product != null) {
-				while (this.availableMachines.isEmpty()) {
+				
+				while (this.availableMachines.isEmpty() && !this.lastQueue) {
 					//wait();
 				}
 				//for(int i = 0 ; i < this.availableMachines.size() ; i++) {
 					//if(this.availableMachines.get(i).isAvalible()) {
 						//synchronized(this.availableMachines.get(i)) {
+				if(!this.availableMachines.isEmpty()) {
 							this.productsQueue.poll();
 							//System.out.println("Ahmed" + product.getColor() );
 							this.availableMachines.get(0).setProduct(product);
@@ -80,8 +83,8 @@ public class UnitQueue {
 							//synchronized (this.availableMachines.get(i).getProduct()) {
 							//Thread t = new Thread(this.availableMachines.get(0));
 							//t.start();
-							if(!this.availableMachines.isEmpty())
-							this.availableMachines.remove(0);
+							//if(!this.availableMachines.isEmpty())
+							this.availableMachines.remove(0);}
 							//this.notAvailableMachines.add(this.availableMachines.remove(0));
 							//}
 							//break;
@@ -90,9 +93,9 @@ public class UnitQueue {
 				//}
 			}
 			
-			while (this.productsQueue.isEmpty()) {
+		/*	while (this.productsQueue.isEmpty()) {
 			
-			}
+			}*/
 			
 		}
 		

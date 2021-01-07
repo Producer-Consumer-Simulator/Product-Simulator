@@ -25,6 +25,11 @@ public class UnitBuilder {
 		UnitQueue next = this.OurUnit.getQueue(NextQueueName);
 		if (next == null) {
 			next = new UnitQueue(NextQueueName);
+			next.lastQueue = true;
+			/*for(int i = 0 ; i < this.OurUnit.QueueSize() ; i++) {
+				this.OurUnit.
+			}*/
+			prev.lastQueue = false;
 			addQueue(next);
 		}
 		m.setPrevQueue(prev);
