@@ -48,13 +48,15 @@ public class myshapes {
 	}
 	public Rectangle Qshape() {
 		Rectangle Q = new Rectangle(x,y,Qwidth,Qheight);
-		Q.setFill(Color.GOLD);;
+		Q.setFill(Color.GOLD);
+		Q.setStroke(Color.GRAY);
 		Q.setId("Q");
 		return Q;
 	}
 	public Circle Mshape() {
 		Circle M = new Circle(x,y,Mradius);
 		M.setFill(Color.GRAY);
+		M.setStroke(Color.GOLD);
 		M.setId("M");
 		return M;
 	}

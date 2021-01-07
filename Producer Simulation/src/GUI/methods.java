@@ -53,7 +53,15 @@ public class methods {
 			}
 		});
 		
-		shape.getShape().setOnMouseEntered(e -> shape.getShape().setCursor(Cursor.HAND));
+		shape.getShape().setOnMouseEntered(e -> {
+			shape.getShape().setCursor(Cursor.HAND);
+			shape.getShape().setStrokeWidth(3);
+		});
+		
+		shape.getShape().setOnMouseExited(e -> {
+			shape.getShape().setCursor(Cursor.HAND);
+			shape.getShape().setStrokeWidth(0);
+		});
 	}
 	
 	private boolean connectUs() {

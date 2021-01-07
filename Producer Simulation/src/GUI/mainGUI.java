@@ -1,8 +1,6 @@
 package GUI;
 
-import GUI.model.DecoShape;
-import GUI.model.InfoHolder;
-import GUI.model.myshapes;
+import GUI.model.*;
 import javafx.application.Application;
 import javafx.scene.layout.HBox;
 import javafx.scene.Group;
