@@ -2,7 +2,6 @@ package GUI;
 
 import javafx.application.Application;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Shape;
 import javafx.scene.shape.Line;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,10 +13,14 @@ public class mainGUI extends Application{
 	public void start(Stage window) throws Exception {
 		
 		//variables
-		myshapes shapes = new myshapes();
-		methods method = new methods();
-		Group drawingArea = new Group();
 		double x = 1300, y = 650;
+		myshapes shapes = new myshapes();
+		shapes.x = 100; shapes.y = 100;
+		Group drawingArea = new Group();
+		InfoHolder info = new InfoHolder();
+		info.drawingArea = drawingArea;
+		info.shapes = shapes;
+		methods method = new methods(info);
 		
 		//toolbar and its properties
 		HBox toolbar = new HBox();
@@ -30,17 +33,20 @@ public class mainGUI extends Application{
 		//add action when button clicked
 		shapes.QButton.setOnAction(e -> {
 			//create shape, add listener to move it, add it to drawingArea
-			Shape t = shapes.Qshape(50, 50);
-			method.moveShape(t);
-			drawingArea.getChildren().add(t);
+			DecoShape t = new DecoShape();
+			t.setShape(shapes.Qshape());
+			method.HandleShape(t);
+			drawingArea.getChildren().add(t.getShape());
 		});
 		shapes.MButton.setOnAction(e -> {
-			Shape t = shapes.Mshape(50, 50);
-			method.moveShape(t);
-			drawingArea.getChildren().add(t);
+			DecoShape t = new DecoShape();
+			t.setShape(shapes.Mshape());
+			method.HandleShape(t);
+			drawingArea.getChildren().add(t.getShape());
 		});
 		shapes.DrageButton.setOnAction(e ->{
 			method.mode = 'D';
+			method.FirstNodeClicked = false;
 		});
 		shapes.LineButton.setOnAction(e ->{
 			method.mode = 'L';
