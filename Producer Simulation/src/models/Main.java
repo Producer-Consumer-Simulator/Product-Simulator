@@ -14,6 +14,7 @@ public class Main {
 		ub.CreateMachine("cccc", 20, "q1", "q3");
 		//ub.CreateMachine("ddd", 10, "q3", "q2");
 		Unit u = ub.toUnit();
+	//	Org
 		BlockingQueue<Product> productsQueue = new ArrayBlockingQueue<Product>(10);
 		productsQueue.add(new Product("uu", "yellow"));
 		productsQueue.add(new Product("pp", "gray"));
