@@ -2,7 +2,7 @@ package models;
 
 public class Machine {
 	
-	private UnitQueue prevQueue ;
+	//private UnitQueue prevQueue ;
 	private UnitQueue nextQueue ;
 	private int time;
 	private String Name;
@@ -13,13 +13,13 @@ public class Machine {
 		this.time = time;
 	}
 
-	public UnitQueue getPrevQueue() {
+	/*public UnitQueue getPrevQueue() {
 		return prevQueue;
 	}
 
 	public void setPrevQueue(UnitQueue prevQueue) {
 		this.prevQueue = prevQueue;
-	}
+	}*/
 
 	public UnitQueue getNextQueue() {
 		return nextQueue;

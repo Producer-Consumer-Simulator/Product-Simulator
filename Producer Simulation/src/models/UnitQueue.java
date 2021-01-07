@@ -36,5 +36,9 @@ public class UnitQueue {
 	public void setName(String name) {
 		Name = name;
 	}
+	
+	public void Simulate() {
+		
+	}
 
 }

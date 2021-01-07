@@ -44,4 +44,9 @@ public class Unit {
 	public void removeMachine (int index) {
 		FactoryMachines.remove(index);
 	}
+	
+	
+	public void Simulate() {
+		
+	}
 }

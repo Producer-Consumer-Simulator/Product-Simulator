@@ -26,7 +26,7 @@ public class UnitBuilder {
 			next = new UnitQueue(NextQueueName);
 			addQueue(next);
 		}
-		m.setPrevQueue(prev);
+		//m.setPrevQueue(prev);
 		m.setNextQueue(next);
 		addMachine(m);
 	}
