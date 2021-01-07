@@ -52,7 +52,8 @@ public class Machine implements Runnable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public static Object LOCK = new Object();
+	//public static Object LOCK = new Object();
+	@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		//set color
@@ -60,22 +61,28 @@ public class Machine implements Runnable {
 		//set color
 		//queue simulate
 		
-		//synchronized (LOCK) {
+		//synchronized (this) {
 		try {
 			//this.avalible = false;
 			//this.product = this.prevQueue.getProductsQueue().poll();
 			long startTime = System.nanoTime();
-			System.out.println(this.product.getColor());
+			//System.out.println(this.Name);
+			System.out.println(this.Name+" "+this.product.getColor());
 			//this.wait(this.time);
 			while ((System.nanoTime()-startTime)<this.time) {
 				
 			}
+			//wait(this.time);
 			//this.setProduct(new Product("lllll", "qqqqq"));
 			//System.out.println("Black");
-			System.out.println("End " + this.product.getColor());
+			System.out.println("End " + this.Name+" "+this.product.getColor());
+			this.prevQueue.getAvailableMachines().add(this);
+			this.nextQueue.getProductsQueue().add(this.product);
+			
 			this.nextQueue.Simulate();
 			//this.avalible = true ;
-			this.prevQueue.getAvailableMachines().add(this);
+			Thread t = Thread.currentThread();
+			t.stop();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
