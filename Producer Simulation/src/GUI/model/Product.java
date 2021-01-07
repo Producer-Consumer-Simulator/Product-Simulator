@@ -1,13 +1,22 @@
 package GUI.model;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.paint.Color;
 
 public class Product {
 	
-    private final SimpleStringProperty name;
-
+    private SimpleStringProperty name;
+    private Color color;
     
-    private Product(String fName) {
+    public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	private Product(String fName) {
         this.name = new SimpleStringProperty(fName);
 
     }

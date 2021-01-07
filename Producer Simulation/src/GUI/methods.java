@@ -1,7 +1,10 @@
 package GUI;
 
+import java.util.ArrayList;
+
 import GUI.model.DecoShape;
 import GUI.model.InfoHolder;
+import GUI.model.Product;
 import javafx.scene.Cursor;
 import javafx.scene.shape.Line;
 
@@ -100,6 +103,10 @@ public class methods {
 		Line t = new Line(atr[0],atr[1],atr[2],atr[3]);
 		info.drawingArea.getChildren().add(t);
 		t.toBack();
+	}
+	private boolean fillTable(ArrayList<Product> products) {
+		
+		return false;
 	}
 	
 }
