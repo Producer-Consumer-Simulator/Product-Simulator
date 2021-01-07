@@ -21,7 +21,7 @@ public class UnitBuilder {
 			addQueue(prev);
 		}
 		prev.addAvailableMachine(m);
-		prev.addAvailableMachineThread(new Thread (m));
+		//prev.addAvailableMachineThread(new Thread (m));
 		UnitQueue next = this.OurUnit.getQueue(NextQueueName);
 		if (next == null) {
 			next = new UnitQueue(NextQueueName);

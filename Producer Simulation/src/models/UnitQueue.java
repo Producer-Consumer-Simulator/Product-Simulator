@@ -10,22 +10,23 @@ public class UnitQueue {
 	private String Name;
 	private BlockingQueue<Product> productsQueue;
 	private ArrayList<Machine> availableMachines;
-	private ArrayList<Thread> availableMachinesThreads;
+	//private ArrayList<Thread> availableMachinesThreads;
+	 
 	
 	public UnitQueue(String Name) {
 		this.Name = Name;
 		this.productsQueue = new ArrayBlockingQueue<Product>(10);
 		this.availableMachines = new ArrayList<Machine>();
-		this.availableMachinesThreads = new ArrayList<Thread>();
+		//this.availableMachinesThreads = new ArrayList<Thread>();
 	}
 	
 	public void addAvailableMachine(Machine m) {
 		this.availableMachines.add(m);
 	}
 	
-	public void addAvailableMachineThread(Thread t) {
-		this.availableMachinesThreads.add(t);
-	}
+	/*public void addAvailableMachineThread(Thread t) {
+		//this.availableMachinesThreads.add(t);
+	}*/
 	
 	public BlockingQueue<Product> getProductsQueue() {
 		return productsQueue;
@@ -89,12 +90,12 @@ public class UnitQueue {
 				+ availableMachines + "]";
 	}
 
-	public ArrayList<Thread> getAvailableMachinesThreads() {
+	/*public ArrayList<Thread> getAvailableMachinesThreads() {
 		return availableMachinesThreads;
 	}
 
 	public void setAvailableMachinesThreads(ArrayList<Thread> availableMachinesThreads) {
 		this.availableMachinesThreads = availableMachinesThreads;
-	}
+	}*/
 
 }
