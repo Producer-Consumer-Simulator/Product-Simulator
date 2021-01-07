@@ -20,11 +20,11 @@ public class methods {
 		
 		final Delta dragDelta = new Delta();
 		
-		shape.getShape().setOnMousePressed(e -> {
+		shape.getNode().setOnMousePressed(e -> {
 			if(mode == 'D' && shape.dragable) {
 			    // record a delta distance for the drag and drop operation.
-			    dragDelta.x = shape.getShape().getLayoutX() - e.getSceneX();
-			    dragDelta.y = shape.getShape().getLayoutY() - e.getSceneY();
+			    dragDelta.x = shape.getNode().getLayoutX() - e.getSceneX();
+			    dragDelta.y = shape.getNode().getLayoutY() - e.getSceneY();
 			}
 			else if(mode == 'L') {
 				if(!FirstNodeClicked) {
@@ -44,22 +44,22 @@ public class methods {
 			}
 		});
 		
-		shape.getShape().setOnMouseReleased(e -> shape.getShape().setCursor(Cursor.HAND));
+		shape.getNode().setOnMouseReleased(e -> shape.getNode().setCursor(Cursor.HAND));
 		
-		shape.getShape().setOnMouseDragged(e -> {
+		shape.getNode().setOnMouseDragged(e -> {
 			if(mode == 'D' && shape.dragable) {
-				shape.getShape().setLayoutX(e.getSceneX() + dragDelta.x);
-				shape.getShape().setLayoutY(e.getSceneY() + dragDelta.y);
+				shape.getNode().setLayoutX(e.getSceneX() + dragDelta.x);
+				shape.getNode().setLayoutY(e.getSceneY() + dragDelta.y);
 			}
 		});
 		
-		shape.getShape().setOnMouseEntered(e -> {
-			shape.getShape().setCursor(Cursor.HAND);
+		shape.getNode().setOnMouseEntered(e -> {
+			shape.getNode().setCursor(Cursor.HAND);
 			shape.getShape().setStrokeWidth(3);
 		});
 		
-		shape.getShape().setOnMouseExited(e -> {
-			shape.getShape().setCursor(Cursor.HAND);
+		shape.getNode().setOnMouseExited(e -> {
+			shape.getNode().setCursor(Cursor.HAND);
 			shape.getShape().setStrokeWidth(0);
 		});
 	}
@@ -92,16 +92,12 @@ public class methods {
 	}
 	private void drawLine(){
 		double[] atr = new double[] {
-				info.twosides[0].getShape().getLayoutX(),
-				info.twosides[0].getShape().getLayoutY(),
-				info.twosides[1].getShape().getLayoutX(),
-				info.twosides[1].getShape().getLayoutY()
+				info.twosides[0].getNode().getLayoutX() + info.twosides[0].getNode().getWidth()/2,
+				info.twosides[0].getNode().getLayoutY() + info.twosides[0].getNode().getHeight()/2,
+				info.twosides[1].getNode().getLayoutX() + info.twosides[1].getNode().getWidth()/2,
+				info.twosides[1].getNode().getLayoutY() + info.twosides[1].getNode().getHeight()/2
 		};
-		char[] ids = new char[] {
-				info.twosides[0].getShape().getId().charAt(0),
-				info.twosides[1].getShape().getId().charAt(0)
-		};
-		Line t = info.shapes.drawLine(atr, ids);
+		Line t = new Line(atr[0],atr[1],atr[2],atr[3]);
 		info.drawingArea.getChildren().add(t);
 		t.toBack();
 	}

@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -46,29 +47,24 @@ public class myshapes {
 		HBox sep = new HBox(new Separator(),new Line(0,0,0,height), new Separator());
 		return sep;
 	}
+	
+	public void SetStackPane(StackPane sp) {
+		sp.setLayoutX(x); sp.setLayoutY(y);
+	}
+	
 	public Rectangle Qshape() {
-		Rectangle Q = new Rectangle(x,y,Qwidth,Qheight);
+		Rectangle Q = new Rectangle(0,0,Qwidth,Qheight);
 		Q.setFill(Color.GOLD);
 		Q.setStroke(Color.GRAY);
 		Q.setId("Q");
 		return Q;
 	}
 	public Circle Mshape() {
-		Circle M = new Circle(x,y,Mradius);
+		Circle M = new Circle(0,0,Mradius);
 		M.setFill(Color.GRAY);
 		M.setStroke(Color.GOLD);
 		M.setId("M");
 		return M;
-	}
-	public Line drawLine(double[] lineCo, char[] shapeSympol) {
-		lineCo[0] += x; lineCo[1] += y; lineCo[2] += x; lineCo[3] += y;
-		if(shapeSympol[0] == 'Q') {
-			lineCo[0] += Qwidth/2; lineCo[1] += Qheight/2;
-		}
-		if(shapeSympol[1] == 'Q') {
-			lineCo[2] += Qwidth/2; lineCo[3] += Qheight/2;
-		}
-		return new Line(lineCo[0],lineCo[1],lineCo[2],lineCo[3]);
 	}
 	public HBox toolbar() {
 		HBox hbox = new HBox();
@@ -101,11 +97,13 @@ public class myshapes {
 
 	    TextField b = new TextField();
 	    b.getStyleClass().add("text-field");
-	    b.setPrefSize(250, 20);
+	    b.setPrefSize(250, 40);
 	    b.setPromptText("product name");
 	    hbox.getChildren().addAll(buttonqueue,buttonmachine,buttonmove,buttonconect,spacer,b,addproduct);
 
 	    return hbox;
 	}
+	
+	
 	
 }
