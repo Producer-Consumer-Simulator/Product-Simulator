@@ -2,9 +2,9 @@ package models;
 
 public class Machine implements Runnable {
 	
-	//private UnitQueue prevQueue ;
+	private UnitQueue prevQueue ;
 	private UnitQueue nextQueue ;
-	private int time;
+	private long time;
 	private String Name;
 	private Product product;
 	private boolean avalible = true ;
@@ -13,13 +13,13 @@ public class Machine implements Runnable {
 		this.time = time;
 	}
 
-	/*public UnitQueue getPrevQueue() {
+	public UnitQueue getPrevQueue() {
 		return prevQueue;
 	}
 
 	public void setPrevQueue(UnitQueue prevQueue) {
 		this.prevQueue = prevQueue;
-	}*/
+	}
 
 	public UnitQueue getNextQueue() {
 		return nextQueue;
@@ -29,7 +29,7 @@ public class Machine implements Runnable {
 		this.nextQueue = nextQueue;
 	}
 
-	public int getTime() {
+	public long getTime() {
 		return time;
 	}
 
@@ -62,14 +62,20 @@ public class Machine implements Runnable {
 		
 		//synchronized (LOCK) {
 		try {
-			this.avalible = false;
+			//this.avalible = false;
 			//this.product = this.prevQueue.getProductsQueue().poll();
+			long startTime = System.nanoTime();
 			System.out.println(this.product.getColor());
 			//this.wait(this.time);
-			this.setProduct(new Product("lllll", "qqqqq"));
-			System.out.println("Black");
+			while ((System.nanoTime()-startTime)<this.time) {
+				
+			}
+			//this.setProduct(new Product("lllll", "qqqqq"));
+			//System.out.println("Black");
+			System.out.println("End " + this.product.getColor());
 			//this.nextQueue.Simulate();
-			this.avalible = true ;
+			//this.avalible = true ;
+			this.prevQueue.getAvailableMachines().add(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

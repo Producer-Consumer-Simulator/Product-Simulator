@@ -9,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		UnitBuilder ub = new UnitBuilder();
-		ub.CreateMachine("ahmed", 5000, "q0", "q1");
+		ub.CreateMachine("ahmed", 5000000 , "q0", "q1");
 		ub.CreateMachine("bbb", 10000, "q0", "q1");
 		ub.CreateMachine("cccc", 20000, "q0", "q2");
 		ub.CreateMachine("ddd", 25000, "q1", "q2");

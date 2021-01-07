@@ -11,12 +11,13 @@ public class UnitQueue {
 	private BlockingQueue<Product> productsQueue;
 	private ArrayList<Machine> availableMachines;
 	//private ArrayList<Thread> availableMachinesThreads;
-	 
+	//private ArrayList<Machine> notAvailableMachines;
 	
 	public UnitQueue(String Name) {
 		this.Name = Name;
 		this.productsQueue = new ArrayBlockingQueue<Product>(10);
 		this.availableMachines = new ArrayList<Machine>();
+		//this.setNotAvailableMachines(new ArrayList<Machine>());
 		//this.availableMachinesThreads = new ArrayList<Thread>();
 	}
 	
@@ -61,23 +62,33 @@ public class UnitQueue {
 			}*/
 			Product product = this.productsQueue.peek();
 			if(product != null) {
-				for(int i = 0 ; i < this.availableMachines.size() ; i++) {
-					if(this.availableMachines.get(i).isAvalible()) {
+				while (this.availableMachines.isEmpty()) {
+					
+				}
+				//for(int i = 0 ; i < this.availableMachines.size() ; i++) {
+					//if(this.availableMachines.get(i).isAvalible()) {
 						//synchronized(this.availableMachines.get(i)) {
 							this.productsQueue.poll();
 							//System.out.println("Ahmed" + product.getColor() );
-							this.availableMachines.get(i).setProduct(product);
+							this.availableMachines.get(0).setProduct(product);
+							
 							//new Thread(this.availableMachines.get(i)).start();
 							//this.availableMachinesThreads.add(new Thread(this.availableMachines.get(i)));
 							//Thread t = this.availableMachinesThreads.get(i);
 							//synchronized (this.availableMachines.get(i).getProduct()) {
-							Thread t = new Thread(this.availableMachines.get(i));
+							Thread t = new Thread(this.availableMachines.get(0));
 							t.start();
+							this.availableMachines.remove(0);
+							//this.notAvailableMachines.add(this.availableMachines.remove(0));
 							//}
-							break;
+							//break;
 						//}
-					}
-				}
+					//}
+				//}
+			}
+			
+			while (this.productsQueue.isEmpty()) {
+			
 			}
 			
 		}
@@ -89,6 +100,14 @@ public class UnitQueue {
 		return "UnitQueue [Name=" + Name + ", productsQueue=" + productsQueue + ", availableMachines="
 				+ availableMachines + "]";
 	}
+
+	/*public ArrayList<Machine> getNotAvailableMachines() {
+		return notAvailableMachines;
+	}
+
+	public void setNotAvailableMachines(ArrayList<Machine> notAvailableMachines) {
+		this.notAvailableMachines = notAvailableMachines;
+	}*/
 
 	/*public ArrayList<Thread> getAvailableMachinesThreads() {
 		return availableMachinesThreads;
