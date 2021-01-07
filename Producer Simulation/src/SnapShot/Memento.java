@@ -1,15 +1,15 @@
 package SnapShot;
 
-import models.Factory;
+import models.Unit;
 
 public class Memento {
-	private Factory state;
+	private Unit state;
 
-	public Memento(Factory state) {
+	public Memento(Unit state) {
 		this.state = state;
 	}
 	
-	public Factory getState() {
+	public Unit getState() {
 		return state;
 	}
 

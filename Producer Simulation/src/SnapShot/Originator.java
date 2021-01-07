@@ -1,19 +1,19 @@
 package SnapShot;
 
-import models.Factory;
+import models.Unit;
 
 public class Originator {
-	private Factory state;
+	private Unit state;
 
-	public Factory getState() {
+	public Unit getState() {
 		return state;
 	}
 
-	public void setState(Factory state) {
+	public void setState(Unit state) {
 		this.state = state;
 	}
 	
-	public Memento saveStateToMemonto(Factory state) {
+	public Memento saveStateToMemonto(Unit state) {
 		return new Memento(state);
 	}
 	
