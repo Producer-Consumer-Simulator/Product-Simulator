@@ -102,7 +102,8 @@ public class myshapes {
 	    TextField b = new TextField();
 	    b.getStyleClass().add("text-field");
 	    b.setPrefSize(250, 20);
-	    hbox.getChildren().addAll(buttonqueue,buttonmachine,buttonmove,buttonconect,spacer,addproduct,b);
+	    b.setPromptText("product name");
+	    hbox.getChildren().addAll(buttonqueue,buttonmachine,buttonmove,buttonconect,spacer,b,addproduct);
 
 	    return hbox;
 	}
