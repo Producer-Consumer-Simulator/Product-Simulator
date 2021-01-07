@@ -72,12 +72,12 @@ public class UnitQueue {
 							//System.out.println("Ahmed" + product.getColor() );
 							this.availableMachines.get(0).setProduct(product);
 							
-							//new Thread(this.availableMachines.get(i)).start();
+							new Thread(this.availableMachines.get(0)).start();
 							//this.availableMachinesThreads.add(new Thread(this.availableMachines.get(i)));
 							//Thread t = this.availableMachinesThreads.get(i);
 							//synchronized (this.availableMachines.get(i).getProduct()) {
-							Thread t = new Thread(this.availableMachines.get(0));
-							t.start();
+							//Thread t = new Thread(this.availableMachines.get(0));
+							//t.start();
 							this.availableMachines.remove(0);
 							//this.notAvailableMachines.add(this.availableMachines.remove(0));
 							//}

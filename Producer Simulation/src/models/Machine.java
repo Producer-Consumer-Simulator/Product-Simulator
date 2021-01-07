@@ -73,7 +73,7 @@ public class Machine implements Runnable {
 			//this.setProduct(new Product("lllll", "qqqqq"));
 			//System.out.println("Black");
 			System.out.println("End " + this.product.getColor());
-			//this.nextQueue.Simulate();
+			this.nextQueue.Simulate();
 			//this.avalible = true ;
 			this.prevQueue.getAvailableMachines().add(this);
 		} catch (Exception e) {
