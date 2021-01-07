@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.model.DecoShape;
+import GUI.model.InfoHolder;
 import javafx.scene.Cursor;
 import javafx.scene.shape.Line;
 

@@ -1,8 +1,10 @@
 package GUI;
 
+import GUI.model.DecoShape;
+import GUI.model.InfoHolder;
+import GUI.model.myshapes;
 import javafx.application.Application;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Line;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -23,12 +25,8 @@ public class mainGUI extends Application{
 		methods method = new methods(info);
 		
 		//toolbar and its properties
-		HBox toolbar = new HBox();
-		double height = 30;
-		toolbar.setLayoutX(0); toolbar.setLayoutY(0); toolbar.prefHeight(height);
-		toolbar.getChildren().addAll(shapes.AddQbutton(), shapes.separate(height), shapes.AddMbutton(),shapes.separate(height));
-		toolbar.getChildren().addAll(shapes.AddDrageButton(), shapes.separate(height), shapes.AddLineButton(), shapes.separate(height));
-		Line toolbarEnd = new Line(0,height,y*2,height);
+		HBox toolbar = shapes.toolbar();
+		toolbar.setLayoutX(0); toolbar.setLayoutY(0);
 		
 		//add action when button clicked
 		shapes.QButton.setOnAction(e -> {
@@ -51,12 +49,16 @@ public class mainGUI extends Application{
 		shapes.LineButton.setOnAction(e ->{
 			method.mode = 'L';
 		});
+		shapes.addproduct.setOnAction(e ->{
+			System.out.println("person added!");
+		});
 		
 		
 		Group container = new Group();
-		container.getChildren().addAll(toolbar,toolbarEnd,drawingArea);
+		container.getChildren().addAll(toolbar,drawingArea);
 		
 		Scene scene = new Scene(container,x,y);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		window.setScene(scene);
 		window.show();
 	}
