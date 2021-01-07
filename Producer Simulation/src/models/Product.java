@@ -25,5 +25,10 @@ public class Product {
 	public void setColor(String color) {
 		Color = color;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [Name=" + Name + ", Color=" + Color + "]";
+	}
 	
 }
