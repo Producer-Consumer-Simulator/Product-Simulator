@@ -49,7 +49,7 @@ public class Machine implements Runnable {
 		return product;
 	}
 
-	public synchronized void setProduct(Product product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 	public static Object LOCK = new Object();
