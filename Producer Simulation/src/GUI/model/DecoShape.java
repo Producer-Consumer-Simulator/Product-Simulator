@@ -11,6 +11,7 @@ public class DecoShape {
 	private StackPane node;
 	private Shape shape;
 	private Text text;
+	private ArrayList<Product> products;
 	
 	public Text getText() {
 		return text;

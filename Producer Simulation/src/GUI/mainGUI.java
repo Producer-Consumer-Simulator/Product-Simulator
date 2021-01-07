@@ -18,6 +18,7 @@ public class mainGUI extends Application{
 		shapes.x = 100; shapes.y = 100;
 		Group drawingArea = new Group();
 		InfoHolder info = new InfoHolder();
+		
 		info.drawingArea = drawingArea;
 		info.shapes = shapes;
 		methods method = new methods(info);
