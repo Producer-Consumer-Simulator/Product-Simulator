@@ -48,7 +48,7 @@ public class UnitQueue {
 		Name = name;
 	}
 	
-	@SuppressWarnings("deprecation")
+	
 	public void Simulate() {
 		// check available
 		// check machine
