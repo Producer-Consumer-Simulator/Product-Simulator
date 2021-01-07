@@ -49,10 +49,10 @@ public class Machine implements Runnable {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+	public synchronized void setProduct(Product product) {
 		this.product = product;
 	}
-	private static Object LOCK = new Object();
+	public static Object LOCK = new Object();
 	@Override
 	public void run() {
 		//set color
@@ -60,24 +60,31 @@ public class Machine implements Runnable {
 		//set color
 		//queue simulate
 		
-		synchronized (LOCK) {
+		//synchronized (LOCK) {
 		try {
 			this.avalible = false;
+			//this.product = this.prevQueue.getProductsQueue().poll();
 			System.out.println(this.product.getColor());
-			this.wait(this.time);
+			//this.wait(this.time);
 			this.setProduct(new Product("lllll", "qqqqq"));
 			System.out.println("Black");
 			//this.nextQueue.Simulate();
 			this.avalible = true ;
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		}
+		//}
 		
 	}
 
 	public boolean isAvalible() {
 		return avalible;
+	}
+
+	@Override
+	public String toString() {
+		return "Machine [nextQueue=" + nextQueue + ", time=" + time + ", Name=" + Name + ", product=" + product
+				+ ", avalible=" + avalible + "]";
 	}
 
 }

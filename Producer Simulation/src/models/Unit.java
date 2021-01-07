@@ -53,4 +53,11 @@ public class Unit {
 			this.FactoryQueues.get(0).Simulate();
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Unit [FactoryQueues=" + FactoryQueues + ", FactoryMachines=" + FactoryMachines + "]";
+	}
+	
+	
 }

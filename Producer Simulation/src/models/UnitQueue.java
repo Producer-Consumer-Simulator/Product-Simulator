@@ -10,15 +10,21 @@ public class UnitQueue {
 	private String Name;
 	private BlockingQueue<Product> productsQueue;
 	private ArrayList<Machine> availableMachines;
+	private ArrayList<Thread> availableMachinesThreads;
 	
 	public UnitQueue(String Name) {
 		this.Name = Name;
 		this.productsQueue = new ArrayBlockingQueue<Product>(10);
 		this.availableMachines = new ArrayList<Machine>();
+		this.availableMachinesThreads = new ArrayList<Thread>();
 	}
 	
 	public void addAvailableMachine(Machine m) {
 		this.availableMachines.add(m);
+	}
+	
+	public void addAvailableMachineThread(Thread t) {
+		this.availableMachinesThreads.add(t);
 	}
 	
 	public BlockingQueue<Product> getProductsQueue() {
@@ -44,7 +50,7 @@ public class UnitQueue {
 		// check available
 		// check machine
 		//for
-		for(;;) {
+		while (!this.productsQueue.isEmpty()) {
 			/*while(this.productsQueue.poll() == null ) {
 				try {
 					wait();
@@ -56,17 +62,39 @@ public class UnitQueue {
 			if(product != null) {
 				for(int i = 0 ; i < this.availableMachines.size() ; i++) {
 					if(this.availableMachines.get(i).isAvalible()) {
-						this.productsQueue.poll();
-						System.out.println("Ahmed" + product.getColor() );
-						this.availableMachines.get(i).setProduct(product);
-						new Thread(this.availableMachines.get(i)).start();
-						break;
+						//synchronized(this.availableMachines.get(i)) {
+							this.productsQueue.poll();
+							//System.out.println("Ahmed" + product.getColor() );
+							this.availableMachines.get(i).setProduct(product);
+							//new Thread(this.availableMachines.get(i)).start();
+							//this.availableMachinesThreads.add(new Thread(this.availableMachines.get(i)));
+							//Thread t = this.availableMachinesThreads.get(i);
+							//synchronized (this.availableMachines.get(i).getProduct()) {
+							Thread t = new Thread(this.availableMachines.get(i));
+							t.start();
+							//}
+							break;
+						//}
 					}
 				}
 			}
 			
 		}
 		
+	}
+
+	@Override
+	public String toString() {
+		return "UnitQueue [Name=" + Name + ", productsQueue=" + productsQueue + ", availableMachines="
+				+ availableMachines + "]";
+	}
+
+	public ArrayList<Thread> getAvailableMachinesThreads() {
+		return availableMachinesThreads;
+	}
+
+	public void setAvailableMachinesThreads(ArrayList<Thread> availableMachinesThreads) {
+		this.availableMachinesThreads = availableMachinesThreads;
 	}
 
 }
