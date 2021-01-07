@@ -36,7 +36,7 @@ public class UnitBuilder {
 	}
 	
 	public void addQueue(UnitQueue q) {
-		this.addQueue(q);
+		this.OurUnit.addQueue(q);
 	}
 	
 	public Unit toUnit() {
