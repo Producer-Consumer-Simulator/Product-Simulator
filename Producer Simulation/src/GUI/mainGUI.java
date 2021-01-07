@@ -30,15 +30,17 @@ public class mainGUI extends Application{
 		shapes.QButton.setOnAction(e -> {
 			//create shape, add listener to move it, add it to drawingArea
 			DecoShape t = new DecoShape();
+			shapes.SetStackPane(t.getNode());
 			t.setShape(shapes.Qshape());
 			method.HandleShape(t);
-			drawingArea.getChildren().add(t.getShape());
+			drawingArea.getChildren().add(t.getNode());
 		});
 		shapes.MButton.setOnAction(e -> {
 			DecoShape t = new DecoShape();
+			shapes.SetStackPane(t.getNode());
 			t.setShape(shapes.Mshape());
 			method.HandleShape(t);
-			drawingArea.getChildren().add(t.getShape());
+			drawingArea.getChildren().add(t.getNode());
 		});
 		shapes.DrageButton.setOnAction(e ->{
 			method.mode = 'D';
