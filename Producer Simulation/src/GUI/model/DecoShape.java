@@ -12,7 +12,9 @@ public class DecoShape {
 	private Shape shape;
 	private Text text;
 	private ArrayList<Product> products;
-	
+	private ArrayList<DecoShape> nextShapes = new ArrayList<DecoShape>();
+	public boolean dragable = true;
+			
 	public Text getText() {
 		return text;
 	}
@@ -33,9 +35,6 @@ public class DecoShape {
 	public void setNode(StackPane node) {
 		this.node = node;
 	}
-
-	private ArrayList<DecoShape> nextShapes = new ArrayList<DecoShape>();
-	public boolean dragable = true;
 	
 	public void setShape(Shape shape) {
 		this.shape = shape;
