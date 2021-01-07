@@ -1,8 +1,5 @@
 package models;
 
-//import java.util.ArrayDeque;
-//import java.util.Queue;
-
 public class Machine {
 	
 	private UnitQueue prevQueue ;
