@@ -1,4 +1,4 @@
-package SnapShot;
+package services.SnapShot;
 
 import java.util.ArrayList;
 

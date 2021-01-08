@@ -12,6 +12,9 @@ public class UnitBuilder {
 		this.OurUnit = new Unit();
 	}
 	
+	public UnitBuilder(Unit unit) {
+		this.OurUnit = unit;
+	}
 	
 	public void CreateMachine(String MachineName , long MachineTime , String PrevQueueName ,String NextQueueName) {
 		Machine m = new Machine(MachineName,MachineTime);

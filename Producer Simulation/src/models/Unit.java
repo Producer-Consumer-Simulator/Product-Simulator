@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 
+import services.UnitBuilder;
+
 public class Unit {
 	
 	private ArrayList<UnitQueue> FactoryQueues ;
@@ -44,6 +46,21 @@ public class Unit {
 	public void removeMachine (int index) {
 		FactoryMachines.remove(index);
 	}
+	
+	public boolean addProduct(Product p) {
+		if (!FactoryQueues.isEmpty()) {
+			FactoryQueues.get(0).addProduct(p);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public void CreateMachine(String MachineName , long MachineTime , String PrevQueueName ,String NextQueueName) {
+		UnitBuilder b = new UnitBuilder(this);
+		b.CreateMachine(MachineName, MachineTime, PrevQueueName, NextQueueName);
+	}
+	
 	
 	
 	public void Simulate() {

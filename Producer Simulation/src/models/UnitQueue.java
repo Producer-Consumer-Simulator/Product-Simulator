@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+
 public class UnitQueue {
 	
 
@@ -24,6 +25,10 @@ public class UnitQueue {
 	
 	public void addAvailableMachine(Machine m) {
 		this.availableMachines.add(m);
+	}
+	
+	public void addProduct(Product p) {
+		this.productsQueue.add(p);
 	}
 	
 	/*public void addAvailableMachineThread(Thread t) {
