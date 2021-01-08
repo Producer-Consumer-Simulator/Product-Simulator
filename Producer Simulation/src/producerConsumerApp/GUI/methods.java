@@ -1,10 +1,7 @@
-package GUI;
+package producerConsumerApp.GUI;
 
 import java.util.ArrayList;
 
-import GUI.model.DecoShape;
-import GUI.model.InfoHolder;
-import GUI.model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
@@ -16,6 +13,12 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
 import javafx.util.Callback;
+import producerConsumerApp.GUI.model.DecoShape;
+import producerConsumerApp.GUI.model.InfoHolder;
+import producerConsumerApp.models.BackMain;
+import producerConsumerApp.models.Product;
+import producerConsumerApp.models.Unit;
+import producerConsumerApp.services.UnitBuilder;
 
 public class methods {
 	
@@ -184,4 +187,28 @@ public class methods {
 		return data;
 	}
 	
+	public static void Simulate() {
+		InfoHolder info = InfoHolder.getInstance();
+		UnitBuilder ub = new UnitBuilder();
+		treetoUnitBuilder(info.root, ub);
+		Unit u = ub.toUnit();
+		u.addProduct(new Product("uu"));
+		u.addProduct(new Product("pp"));
+		Thread t = new Thread (new BackMain());
+		t.start();
+	}
+	
+	private static void treetoUnitBuilder(DecoShape root, UnitBuilder ub) {
+		if(root == null) return;
+		else if(root.getNext().size() == 0) return;
+		else {
+			for(int i=0; i<root.getNext().size();i++) {
+				if(root.getType() == 'M') {
+					System.out.println(root.getPrevious().get(0).getTextString());
+					ub.CreateMachine(root, root.getPrevious().get(0).getTextString(), root.getNext().get(0).getTextString());
+				}
+				treetoUnitBuilder(root.getNext().get(i), ub);
+			}
+		}
+	}
 }

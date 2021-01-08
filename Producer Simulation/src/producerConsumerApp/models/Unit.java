@@ -1,19 +1,27 @@
-package models;
+package producerConsumerApp.models;
 
 import java.util.ArrayList;
 
-import GUI.model.DecoShape;
-import services.UnitBuilder;
+import producerConsumerApp.GUI.model.DecoShape;
+import producerConsumerApp.services.UnitBuilder;
 
 public class Unit {
-	
+	private static Unit instance;
 	private ArrayList<UnitQueue> FactoryQueues ;
 	private ArrayList<Machine> FactoryMachines ;
 	
-	public Unit() {
+	private Unit() {
 		FactoryQueues = new ArrayList<UnitQueue>();
 		FactoryMachines = new ArrayList<Machine>();
 	}
+	
+	public static Unit getInstance() {
+		if(instance == null)
+			instance = new Unit();
+		return instance;
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public Unit Copy () {
 		Unit s = new Unit();

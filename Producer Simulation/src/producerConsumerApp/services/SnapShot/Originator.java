@@ -1,6 +1,6 @@
-package services.SnapShot;
+package producerConsumerApp.services.SnapShot;
 
-import models.Unit;
+import producerConsumerApp.models.Unit;
 
 public class Originator {
 	private Unit state;

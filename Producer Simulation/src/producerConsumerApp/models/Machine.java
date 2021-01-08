@@ -1,8 +1,8 @@
-package models;
+package producerConsumerApp.models;
 
 import java.util.Random;
 
-import GUI.model.DecoShape;
+import producerConsumerApp.GUI.model.DecoShape;
 
 public class Machine implements Runnable {
 	
@@ -99,14 +99,14 @@ public class Machine implements Runnable {
 
 	@Override
 	public void run() {
-		long startTime = System.currentTimeMillis();
+		//long startTime = System.currentTimeMillis();
 		synchronized(this) {
 			try {
 			System.out.println(/*this.Name+*/" "+this.product.getColor());
-			while (this.time-(System.currentTimeMillis()-startTime)>0) {
+			/*while (this.time-(System.currentTimeMillis()-startTime)>0) {
 				System.out.println("remaining time : " + (this.time-(System.currentTimeMillis()-startTime)) );
-			}
-			//wait(this.time);
+			}*/
+			wait(this.time);
 			System.out.println("End " + /*this.Name+" "+*/this.product.getColor());
 			this.nextQueue.getProductsQueue().add(this.product);	
 			this.nextQueue.Simulate();

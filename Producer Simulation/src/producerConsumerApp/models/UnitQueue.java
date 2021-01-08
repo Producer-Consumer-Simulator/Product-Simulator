@@ -1,4 +1,4 @@
-package models;
+package producerConsumerApp.models;
 
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;

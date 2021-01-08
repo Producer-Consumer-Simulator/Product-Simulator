@@ -1,9 +1,5 @@
-package GUI;
+package producerConsumerApp.GUI;
 
-import GUI.model.DecoShape;
-import GUI.model.InfoHolder;
-import GUI.model.Product;
-import GUI.model.myshapes;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,8 +7,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import producerConsumerApp.GUI.model.DecoShape;
+import producerConsumerApp.GUI.model.InfoHolder;
+import producerConsumerApp.GUI.model.myshapes;
+import producerConsumerApp.models.Product;
 
-public class mainGUI extends Application{
+public class mainGUI extends Application implements Runnable{
+	
+	private String[] args;
 	
 	String textNull = "\n";
 	
@@ -57,7 +59,7 @@ public class mainGUI extends Application{
 			drawingArea.getChildren().add(t.getNode());
 		});
 		shapes.run.setOnAction(e ->{
-			//Main.runthis();
+			methods.Simulate();
 		});
 		shapes.DrageButton.setOnAction(e ->{
 			method.mode = 'D';
@@ -115,7 +117,15 @@ public class mainGUI extends Application{
 	
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
+		launch(args);
+	}*/
+
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		launch(args);
 	}
 }

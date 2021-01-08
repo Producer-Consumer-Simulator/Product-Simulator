@@ -1,16 +1,16 @@
-package services;
+package producerConsumerApp.services;
 
-import models.Unit;
-import models.UnitQueue;
-import GUI.model.DecoShape;
-import models.Machine;
+import producerConsumerApp.GUI.model.DecoShape;
+import producerConsumerApp.models.Machine;
+import producerConsumerApp.models.Unit;
+import producerConsumerApp.models.UnitQueue;
 
 public class UnitBuilder {
 	
 	private Unit OurUnit ;
 	
 	public UnitBuilder() {
-		this.OurUnit = new Unit();
+		this.OurUnit = Unit.getInstance();
 	}
 	
 	public UnitBuilder(Unit unit) {

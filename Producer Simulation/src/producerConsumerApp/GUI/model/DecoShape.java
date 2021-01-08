@@ -1,10 +1,11 @@
-package GUI.model;
+package producerConsumerApp.GUI.model;
 
 import java.util.ArrayList;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import producerConsumerApp.models.Product;
 
 public class DecoShape {
 	

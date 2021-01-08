@@ -1,16 +1,22 @@
-package models;
+package producerConsumerApp.models;
 
-import java.util.concurrent.ArrayBlockingQueue;
+/*import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import GUI.model.DecoShape;
-import services.UnitBuilder;
-import services.SnapShot.Memento;
-import services.SnapShot.Originator;
+import producerConsumerApp.GUI.model.DecoShape;
+import producerConsumerApp.services.UnitBuilder;
+import producerConsumerApp.services.SnapShot.Memento;
+import producerConsumerApp.services.SnapShot.Originator;*/
 
-public class Main {
+public class BackMain implements Runnable {
 
-	public static void main(String[] args) {
+	@Override
+	public void run() {
+		Unit u = Unit.getInstance();
+		u.Simulate();
+	}
+
+	/*public static void main(String[] args) {
 		UnitBuilder ub = new UnitBuilder();
 		ub.CreateMachine(new DecoShape(), "q0", "q1");
 		ub.CreateMachine(new DecoShape(), "q1", "q2");
@@ -36,6 +42,6 @@ public class Main {
 	//	System.out.println("000");
 		//m.getState().Simulate();
 		
-	}
+	//}*/
 
 }

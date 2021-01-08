@@ -1,9 +1,10 @@
-package GUI.model;
+package producerConsumerApp.GUI.model;
 
 import java.util.ArrayList;
 
 import javafx.scene.Group;
 import javafx.scene.control.TableView;
+import producerConsumerApp.models.Product;
 
 public class InfoHolder {
 	
