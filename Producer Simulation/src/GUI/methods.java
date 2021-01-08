@@ -7,6 +7,8 @@ import GUI.model.InfoHolder;
 import GUI.model.Product;
 import javafx.scene.Cursor;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
+import javafx.scene.transform.Rotate;
 
 public class methods {
 	
@@ -100,9 +102,28 @@ public class methods {
 				info.twosides[1].getNode().getLayoutX() + info.twosides[1].getNode().getWidth()/2,
 				info.twosides[1].getNode().getLayoutY() + info.twosides[1].getNode().getHeight()/2
 		};
-		Line t = new Line(atr[0],atr[1],atr[2],atr[3]);
+		//line
+		Line t = new Line(atr[0],atr[1],atr[2],atr[3]); 
 		info.drawingArea.getChildren().add(t);
 		t.toBack();
+		//some calculations
+		double xDiff = atr[2]-atr[0], yDiff = atr[3]-atr[1];
+		double length = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
+		double angle = Math.atan(yDiff/xDiff);
+		if(xDiff == 0) {
+			angle = (yDiff>0)?Math.PI/2:Math.PI*3/2;
+		}
+		if(xDiff < 0)
+			angle += Math.PI;
+		double newX = atr[0]+((length/2)*Math.cos(angle))+5*Math.sin(angle);
+		double newY = atr[1]+((length/2)*Math.sin(angle))-5*Math.cos(angle);
+		//arrow
+		Polygon polygon = new Polygon();
+		polygon.getPoints().addAll(new Double[]{0.0,0.0,20.0,5.0,0.0,10.0});
+		polygon.setLayoutX(newX); polygon.setLayoutY(newY);
+		polygon.getTransforms().add(new Rotate((angle*180/Math.PI),0,0)); 
+		info.drawingArea.getChildren().add(polygon);
+		polygon.toBack();
 	}
 	private boolean fillTable(ArrayList<Product> products) {
 		
