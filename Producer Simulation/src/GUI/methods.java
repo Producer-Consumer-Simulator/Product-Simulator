@@ -48,6 +48,7 @@ public class methods {
 					FirstNodeClicked = false;
 					if(connectUs()) {
 						System.out.println("connected!");
+						info.twosides[1].setPrevious(info.twosides[0]);
 						drawLine();						
 					}
 					else
@@ -77,8 +78,8 @@ public class methods {
 	}
 	
 	private boolean connectUs() {
-		char id1 = info.twosides[0].getShape().getId().charAt(0);
-		char id2 = info.twosides[1].getShape().getId().charAt(0);
+		char id1 = info.twosides[0].getType();
+		char id2 = info.twosides[1].getType();
 		if(id1==id2) {
 			System.out.println(id1+" to "+id1);
 			return false;
@@ -90,14 +91,21 @@ public class methods {
 			info.twosides[1].dragable = info.twosides[0].dragable;
 			return !info.twosides[0].dragable;
 		}
-		else {
-			DecoShape ds = new DecoShape(); 
-			if(ds.search(info.root,info.twosides[0])) {
-				System.out.println("\nshape found!");
-				info.twosides[0].dragable = !info.twosides[0].setNextShape(info.twosides[1]);
-				info.twosides[1].dragable = info.twosides[0].dragable;
-				return !info.twosides[0].dragable;
+		
+		ArrayList<DecoShape> pre = info.twosides[0].getPrevious();
+		for(int i=0; i<pre.size(); i++) {
+			if(info.twosides[1] == pre.get(i)) {
+				System.out.println("already connected!");
+				return false;
 			}
+		}
+
+		DecoShape ds = new DecoShape(); 
+		if(ds.search(info.root,info.twosides[0])) {
+			System.out.println("\nshape found!");
+			info.twosides[0].dragable = !info.twosides[0].setNextShape(info.twosides[1]);
+			info.twosides[1].dragable = info.twosides[0].dragable;
+			return !info.twosides[0].dragable;
 		}
 		System.out.println("\nno path from root found");
 		return false;

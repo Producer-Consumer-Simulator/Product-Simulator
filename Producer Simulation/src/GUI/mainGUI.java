@@ -23,7 +23,7 @@ public class mainGUI extends Application{
 		myshapes shapes = new myshapes();
 		shapes.x = 100; shapes.y = 100;
 		Group drawingArea = new Group();
-		InfoHolder info = new InfoHolder();
+		InfoHolder info = InfoHolder.getInstance();
 		//table
 		info.table = new TableView<Product>();
 		//text null
@@ -43,6 +43,7 @@ public class mainGUI extends Application{
 			DecoShape t = new DecoShape();
 			shapes.SetStackPane(t.getNode());
 			t.setShape(shapes.Qshape());
+			t.setText("Q"+String.valueOf(info.QCounter++));
 			method.HandleShape(t);
 			drawingArea.getChildren().add(t.getNode());
 		});
@@ -89,7 +90,6 @@ public class mainGUI extends Application{
 		});
 		shapes.addproduct.setOnMouseClicked(e ->{
 			String text = shapes.textField.getText();
-			System.out.println(text);
 			if(!text.equals(textNull)) {
 				info.productInput.add(new Product(text));
 				method.fillTable(info.productInput);
