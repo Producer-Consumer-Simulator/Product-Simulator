@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
+import GUI.model.DecoShape;
 import services.UnitBuilder;
 
 public class Unit {
@@ -63,9 +64,9 @@ public class Unit {
 	}
 	
 	
-	public void CreateMachine(String MachineName , long MachineTime , String PrevQueueName ,String NextQueueName) {
+	public void CreateMachine(DecoShape shape, String PrevQueueName ,String NextQueueName) {
 		UnitBuilder b = new UnitBuilder(this);
-		b.CreateMachine(MachineName, MachineTime, PrevQueueName, NextQueueName);
+		b.CreateMachine(shape, PrevQueueName, NextQueueName);
 	}
 	
 	

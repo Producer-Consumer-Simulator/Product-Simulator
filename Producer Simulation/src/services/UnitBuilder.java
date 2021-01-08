@@ -2,6 +2,7 @@ package services;
 
 import models.Unit;
 import models.UnitQueue;
+import GUI.model.DecoShape;
 import models.Machine;
 
 public class UnitBuilder {
@@ -16,8 +17,8 @@ public class UnitBuilder {
 		this.OurUnit = unit;
 	}
 	
-	public void CreateMachine(String MachineName , long MachineTime , String PrevQueueName ,String NextQueueName) {
-		Machine m = new Machine(MachineName,MachineTime);
+	public void CreateMachine(DecoShape shape, String PrevQueueName ,String NextQueueName) {
+		Machine m = new Machine(shape);
 		UnitQueue prev = this.OurUnit.getQueue(PrevQueueName);
 		if (prev == null) {
 			prev = new UnitQueue(PrevQueueName);
