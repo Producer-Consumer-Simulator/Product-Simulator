@@ -126,7 +126,7 @@ public class methods {
 		polygon.toBack();
 	}
 	private boolean fillTable(ArrayList<Product> products) {
-		
+		 
 		return false;
 	}
 	
