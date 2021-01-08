@@ -24,18 +24,13 @@ public class UnitBuilder {
 			addQueue(prev);
 		}
 		prev.addAvailableMachine(m);
-		//prev.addAvailableMachineThread(new Thread (m));
 		UnitQueue next = this.OurUnit.getQueue(NextQueueName);
 		if (next == null) {
 			next = new UnitQueue(NextQueueName);
 			next.lastQueue = true;
-			/*for(int i = 0 ; i < this.OurUnit.QueueSize() ; i++) {
-				this.OurUnit.
-			}*/
 			prev.lastQueue = false;
 			addQueue(next);
 		}
-		//m.setPrevQueue(prev);
 		m.setNextQueue(next);
 		addMachine(m);
 	}

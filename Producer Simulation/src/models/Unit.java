@@ -13,6 +13,13 @@ public class Unit {
 		FactoryQueues = new ArrayList<UnitQueue>();
 		FactoryMachines = new ArrayList<Machine>();
 	}
+	@SuppressWarnings("unchecked")
+	public Unit Copy () {
+		Unit s = new Unit();
+		s.FactoryQueues = (ArrayList<UnitQueue>) this.FactoryQueues.clone();
+		s.FactoryMachines = (ArrayList<Machine>) this.FactoryMachines.clone();
+		return s;
+	}
 	
 	public void addQueue(UnitQueue q) {
 		FactoryQueues.add(q);

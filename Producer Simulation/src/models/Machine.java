@@ -92,13 +92,21 @@ public class Machine implements Runnable {
 
 	@Override
 	public void run() {
-		long startTime = System.currentTimeMillis();
-		System.out.println(this.Name+" "+this.product.getColor());
-		while ((System.currentTimeMillis()-startTime)<this.time) {}
-		System.out.println("End " + this.Name+" "+this.product.getColor());
-		this.nextQueue.getProductsQueue().add(this.product);	
-		this.nextQueue.Simulate();
-		this.avalible = true ;		
+		//long startTime = System.currentTimeMillis();
+		synchronized(this) {
+			try {
+			System.out.println(this.Name+" "+this.product.getColor());
+			//while ((System.currentTimeMillis()-startTime)<this.time) {}
+			wait(this.time);
+			System.out.println("End " + this.Name+" "+this.product.getColor());
+			this.nextQueue.getProductsQueue().add(this.product);	
+			this.nextQueue.Simulate();
+			this.avalible = true ;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public boolean isAvalible() {
