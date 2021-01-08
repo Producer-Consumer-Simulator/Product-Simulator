@@ -9,6 +9,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
@@ -192,8 +193,10 @@ public class methods {
 		UnitBuilder ub = new UnitBuilder();
 		treetoUnitBuilder(info.root, ub);
 		Unit u = ub.toUnit();
-		u.addProduct(new Product("uu"));
-		u.addProduct(new Product("pp"));
+		Product p1 = new Product("uu"), p2 = new Product("pp");
+		p1.fxcolor = Color.RED; p2.fxcolor = Color.GREEN;
+		u.addProduct(p1);
+		u.addProduct(p2);
 		Thread t = new Thread (new BackMain());
 		t.start();
 	}

@@ -3,6 +3,7 @@ package producerConsumerApp.GUI.model;
 import java.util.ArrayList;
 
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import producerConsumerApp.models.Product;
@@ -115,4 +116,7 @@ public class DecoShape {
 		this.type = type;
 	}
 	
+	public void setColor(Color color) {
+		this.shape.setFill(color);
+	}
 }

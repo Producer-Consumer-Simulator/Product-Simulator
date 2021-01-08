@@ -2,6 +2,7 @@ package producerConsumerApp.models;
 
 import java.util.Random;
 
+import javafx.scene.paint.Color;
 import producerConsumerApp.GUI.model.DecoShape;
 
 public class Machine implements Runnable {
@@ -17,7 +18,8 @@ public class Machine implements Runnable {
 	
 	public Machine(DecoShape shape) {
 		this.guiShape = shape;
-		this.time = Math.abs(new Random(10000).nextLong());
+		Random r = new Random();
+		this.time = 10000 + r.nextInt(10000);
 	}
 
 	/*public UnitQueue getPrevQueue() {
@@ -97,12 +99,16 @@ public class Machine implements Runnable {
 		
 	}*/
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		//long startTime = System.currentTimeMillis();
 		synchronized(this) {
 			try {
+			this.guiShape.setColor(this.product.fxcolor);
+			this.guiShape.setText(this.product.getFirstName()+" "+this.time/1000);
 			System.out.println(/*this.Name+*/" "+this.product.getColor());
+			//this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
 			/*while (this.time-(System.currentTimeMillis()-startTime)>0) {
 				System.out.println("remaining time : " + (this.time-(System.currentTimeMillis()-startTime)) );
 			}*/
@@ -111,6 +117,8 @@ public class Machine implements Runnable {
 			this.nextQueue.getProductsQueue().add(this.product);	
 			this.nextQueue.Simulate();
 			this.avalible = true ;
+			this.guiShape.setColor(Color.GRAY);
+			this.guiShape.setText(" ");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
