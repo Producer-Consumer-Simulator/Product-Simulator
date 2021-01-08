@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import models.Main;
 
 public class mainGUI extends Application{
 	
