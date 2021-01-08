@@ -17,7 +17,7 @@ public class Machine implements Runnable {
 	
 	public Machine(DecoShape shape) {
 		this.guiShape = shape;
-		this.time = new Random(60000).nextLong();
+		this.time = Math.abs(new Random(60000).nextLong());
 	}
 
 	/*public UnitQueue getPrevQueue() {
