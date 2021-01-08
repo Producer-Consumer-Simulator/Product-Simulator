@@ -125,6 +125,7 @@ public class UnitQueue {
 	private Machine getAvailableMachine() {
 		for (int i = 0 ; i < this.availableMachines.size();i++) {
 			if (this.availableMachines.get(i).isAvalible()) {
+				this.availableMachines.get(i).setAvailable(false);
 				return this.availableMachines.get(i);
 			}
 		}
