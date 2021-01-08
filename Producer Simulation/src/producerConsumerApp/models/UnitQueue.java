@@ -106,14 +106,20 @@ public class UnitQueue {
 		
 	}
 	
-	public void Simulate() {
+	public synchronized void Simulate(){
 		while (!this.productsQueue.isEmpty() && !this.lastQueue) {
 			Product product = this.productsQueue.poll();
 			if(product != null) {
-				Machine available = getAvailableMachine();
-				while (available==null) {
-					available = getAvailableMachine();
+				//Machine available = getAvailableMachine();
+				while (getAvailableMachine() == null) {
+					try {
+						wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+				Machine available = getAvailableMachine();
 				available.setAvailable(false);
 				available.setProduct(product);
 				new Thread(available).start();
@@ -122,9 +128,10 @@ public class UnitQueue {
 		
 	}
 	
-	private Machine getAvailableMachine() {
+	private synchronized Machine getAvailableMachine() {
 		for (int i = 0 ; i < this.availableMachines.size();i++) {
 			if (this.availableMachines.get(i).isAvalible()) {
+				notify();
 				return this.availableMachines.get(i);
 			}
 		}

@@ -99,12 +99,12 @@ public class Machine implements Runnable {
 		
 	}*/
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		//long startTime = System.currentTimeMillis();
 		synchronized(this) {
 			try {
+			System.out.println("Machine memory: "+this);
 			this.guiShape.setColor(this.product.fxcolor);
 			this.guiShape.setText(this.product.getFirstName()+" "+this.time/1000);
 			System.out.println(/*this.Name+*/" "+this.product.getColor());
@@ -134,11 +134,11 @@ public class Machine implements Runnable {
 		this.avalible=b;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "Machine [nextQueue=" + nextQueue + ", time=" + time + ", product=" + product + ", guiShape=" + guiShape
 				+ ", avalible=" + avalible + "]";
-	}
+	}*/
 
 	
 
