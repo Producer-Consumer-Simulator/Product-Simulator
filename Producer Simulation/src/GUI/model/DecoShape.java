@@ -12,9 +12,25 @@ public class DecoShape {
 	private Shape shape;
 	private Text text;
 	private ArrayList<Product> products;
+
 	private ArrayList<DecoShape> nextShapes = new ArrayList<DecoShape>();
 	public boolean dragable = true;
 			
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Product product) {
+		if(this.shape.getId().charAt(0) == 'Q')
+			this.products.add(product);
+		else {
+			if(this.products.size() >= 1) {
+				System.out.println("Machine can't handle more than one product at the same time");
+				return;
+			}
+		}
+	}
+	
 	public Text getText() {
 		return text;
 	}

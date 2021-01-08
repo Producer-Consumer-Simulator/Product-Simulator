@@ -1,14 +1,20 @@
 package GUI;
 
-import GUI.model.*;
+import GUI.model.DecoShape;
+import GUI.model.InfoHolder;
+import GUI.model.Product;
+import GUI.model.myshapes;
 import javafx.application.Application;
-import javafx.scene.layout.HBox;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class mainGUI extends Application{
-
+	
+	String textNull = "\n";
+	
 	@Override
 	public void start(Stage window) throws Exception {
 		
@@ -18,6 +24,10 @@ public class mainGUI extends Application{
 		shapes.x = 100; shapes.y = 100;
 		Group drawingArea = new Group();
 		InfoHolder info = new InfoHolder();
+		//table
+		info.table = new TableView<Product>();
+		//text null
+		
 		
 		info.drawingArea = drawingArea;
 		info.shapes = shapes;
@@ -45,22 +55,56 @@ public class mainGUI extends Application{
 		});
 		shapes.DrageButton.setOnAction(e ->{
 			method.mode = 'D';
+			shapes.DrageButton.setStyle("-fx-cursor:hand;\r\n" + 
+					"	-fx-border-color:#2196f3;\r\n" + 
+					"	-fx-border-width:3px;\r\n" + 
+					"	-fx-border-radius:20px;\r\n" + 
+					"	-fx-background-color:#FFF;\r\n" + 
+					"	-fx-text-fill:#2196f3;\r\n" + 
+					"	-fx-font-weight:bold;");
+			shapes.LineButton.setStyle("-fx-background-color:#2196f3;\r\n" + 
+					"	-fx-font-family:Tahoma;\r\n" + 
+					"	-fx-font-size:15px;\r\n" + 
+					"	-fx-text-fill:#FFF;\r\n" + 
+					"	-fx-background-radius:20px;\r\n" + 
+					"	-fx-font-weight:bold;");
+			
 			method.FirstNodeClicked = false;
 		});
 		shapes.LineButton.setOnAction(e ->{
+			shapes.LineButton.setStyle("-fx-cursor:hand;\r\n" + 
+					"	-fx-border-color:#2196f3;\r\n" + 
+					"	-fx-border-width:3px;\r\n" + 
+					"	-fx-border-radius:20px;\r\n" + 
+					"	-fx-background-color:#FFF;\r\n" + 
+					"	-fx-text-fill:#2196f3;\r\n" + 
+					"	-fx-font-weight:bold;");
+			shapes.DrageButton.setStyle("-fx-background-color:#2196f3;\r\n" + 
+					"	-fx-font-family:Tahoma;\r\n" + 
+					"	-fx-font-size:15px;\r\n" + 
+					"	-fx-text-fill:#FFF;\r\n" + 
+					"	-fx-background-radius:20px;\r\n" + 
+					"	-fx-font-weight:bold;");
 			method.mode = 'L';
 		});
-		shapes.addproduct.setOnAction(e ->{
-			System.out.println("person added!");
+		shapes.addproduct.setOnMouseClicked(e ->{
+			String text = shapes.textField.getText();
+			System.out.println(text);
+			if(!text.equals(textNull)) {
+				info.productInput.add(new Product(text));
+				method.fillTable(info.productInput);
+			}
 		});
 		
-		
+		textNull = shapes.textField.getText();
+		method.fillTable(info.productInput);
 		Group container = new Group();
-		container.getChildren().addAll(toolbar,drawingArea);
+		container.getChildren().addAll(toolbar,drawingArea,info.table);
 		
 		Scene scene = new Scene(container,x,y);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		window.setScene(scene);
+		window.setResizable(false);
 		window.show();
 	}
 	

@@ -24,6 +24,7 @@ public class myshapes {
 	public Button DrageButton;
 	public Button LineButton;
 	public Button addproduct;
+	public TextField textField;
 	
 	public Button AddQbutton() {
 		QButton = new Button("Add Q");
@@ -69,6 +70,8 @@ public class myshapes {
 	public HBox toolbar() {
 		HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
+	    hbox.setPrefWidth(1300);
+	    hbox.getStyleClass().add("hbox");
 	    hbox.setSpacing(10);
 	    hbox.setStyle("-fx-background-color: #FFF;");
 
@@ -95,11 +98,11 @@ public class myshapes {
 	    addproduct.setPrefSize(150, 40);
 	    addproduct.getStyleClass().add("btn-save");
 
-	    TextField b = new TextField();
-	    b.getStyleClass().add("text-field");
-	    b.setPrefSize(250, 40);
-	    b.setPromptText("product name");
-	    hbox.getChildren().addAll(buttonqueue,buttonmachine,buttonmove,buttonconect,spacer,b,addproduct);
+	    textField = new TextField();
+	    textField.getStyleClass().add("text-field");
+	    textField.setPrefSize(250, 40);
+	    textField.setPromptText("product name");
+	    hbox.getChildren().addAll(buttonqueue,buttonmachine,buttonmove,buttonconect,spacer,textField,addproduct);
 
 	    return hbox;
 	}
