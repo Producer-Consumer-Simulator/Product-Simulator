@@ -5,10 +5,17 @@ import java.util.ArrayList;
 import GUI.model.DecoShape;
 import GUI.model.InfoHolder;
 import GUI.model.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
+import javafx.util.Callback;
 
 public class methods {
 	
@@ -125,9 +132,48 @@ public class methods {
 		info.drawingArea.getChildren().add(polygon);
 		polygon.toBack();
 	}
-	private boolean fillTable(ArrayList<Product> products) {
+	
+	@SuppressWarnings({ "unchecked", "rawtypes"})
+	public void fillTable(ArrayList<Product> products) {
+		
+		final ObservableList<Product> data = fillData(products);
+		
+		info.table.setEditable(true);
 		 
-		return false;
+        TableColumn firstNameCol = new TableColumn("First Name");
+        firstNameCol.setStyle("-fx-alignment: CENTER");
+        firstNameCol.prefWidthProperty().bind(info.table.widthProperty().divide(1));
+        firstNameCol.setMinWidth(100);
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("firstName"));
+        info.table.setItems(data);
+        
+        firstNameCol.setCellFactory(new Callback<TableColumn, TableCell>() {
+            public TableCell call(TableColumn param) {
+                return new TableCell<Product, String>() {
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                            setText(item);
+                            TableRow<Product> row = getTableRow();
+                        	if(row.getIndex()>=0&&row.getIndex()<data.size())
+                        		row.setStyle("-fx-background-color:"+data.get(row.getIndex()).getColor()+";");
+                    }
+                };
+            }
+        });
+        info.table.getColumns().addAll(firstNameCol);
+        info.table.relocate(1000, 400);
+		info.table.setId("my-table");
+        info.table.setPrefWidth(300);
+        info.table.setPrefHeight(250);
+	}
+	
+	private ObservableList<Product> fillData(ArrayList<Product> products){
+		final ObservableList<Product> data = FXCollections.observableArrayList();
+		for(int i=0; i<products.size(); i++) {
+			data.add(products.get(i));
+		}
+		return data;
 	}
 	
 }
