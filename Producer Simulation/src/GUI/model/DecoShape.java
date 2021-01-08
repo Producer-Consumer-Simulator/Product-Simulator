@@ -10,7 +10,7 @@ public class DecoShape {
 	
 	private StackPane node;
 	private Shape shape;
-	private Text text;
+	private Text text = new Text();
 	private char type;
 	private ArrayList<Product> products;
 	private ArrayList<DecoShape> next = new ArrayList<DecoShape>();
@@ -33,12 +33,20 @@ public class DecoShape {
 	}
 	
 	public Text getText() {
-		return text;
+		return this.text;
+	}
+	public String getTextString() {
+		return this.text.getText();
 	}
 
 	public void setText(String text) {
-		this.text = new Text(text);
-		node.getChildren().add(this.text);
+		if(this.text == null)
+			System.out.println("no text object found!");
+		this.text.setText(text);
+	}
+	public void setText(Text text) {
+		this.text = text;
+		node.getChildren().add(text);
 		this.text.toFront();
 	}
 
@@ -56,14 +64,13 @@ public class DecoShape {
 	public void setShape(Shape shape) {
 		this.shape = shape;
 		node.getChildren().add(shape);
-		this.setText("");
 		this.setType(shape.getId().charAt(0));
 	}
 	public Shape getShape(){
 		return this.shape;
 	}
 	
-	public boolean setNextShape(DecoShape newShape) {
+	public boolean setNext(DecoShape newShape) {
 		if(this.shape.getId().charAt(0) == 'M' && this.next.size() >= 1) {
 			System.out.println("M should have one output only");
 			return false;
@@ -71,7 +78,7 @@ public class DecoShape {
 		this.next.add(newShape);
 		return true;
 	}
-	public ArrayList<DecoShape> getNextShapes(){
+	public ArrayList<DecoShape> getNext(){
 		return this.next;
 	}
 	public void setPrevious(DecoShape pre) {
@@ -92,7 +99,7 @@ public class DecoShape {
 		else {
 			boolean found = false;
 			for(int i=0; i<root.next.size();) {
-				found = search(root.getNextShapes().get(i++), findMe);
+				found = search(root.getNext().get(i++), findMe);
 				if(found == true) break;
 			}
 			return found;

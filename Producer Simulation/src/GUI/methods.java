@@ -87,7 +87,7 @@ public class methods {
 		else if(info.root == null) {
 			System.out.println("not root");
 			info.root = info.twosides[0];
-			info.twosides[0].dragable = !info.twosides[0].setNextShape(info.twosides[1]);
+			info.twosides[0].dragable = !info.twosides[0].setNext(info.twosides[1]);
 			info.twosides[1].dragable = info.twosides[0].dragable;
 			return !info.twosides[0].dragable;
 		}
@@ -103,7 +103,7 @@ public class methods {
 		DecoShape ds = new DecoShape(); 
 		if(ds.search(info.root,info.twosides[0])) {
 			System.out.println("\nshape found!");
-			info.twosides[0].dragable = !info.twosides[0].setNextShape(info.twosides[1]);
+			info.twosides[0].dragable = !info.twosides[0].setNext(info.twosides[1]);
 			info.twosides[1].dragable = info.twosides[0].dragable;
 			return !info.twosides[0].dragable;
 		}

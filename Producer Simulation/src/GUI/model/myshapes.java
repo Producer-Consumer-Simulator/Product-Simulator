@@ -24,6 +24,7 @@ public class myshapes {
 	public Button DrageButton;
 	public Button LineButton;
 	public Button addproduct;
+	public Button run;
 	public TextField textField;
 	
 	public Button AddQbutton() {
@@ -91,6 +92,10 @@ public class myshapes {
 	    buttonconect.setPrefSize(150, 40);
 	    buttonconect.getStyleClass().add("btn-save");
 	    
+	    run = new Button("Run");
+	    run.setPrefSize(150, 40);
+	    run.getStyleClass().add("btn-save");
+	    
 	    Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         
@@ -102,7 +107,7 @@ public class myshapes {
 	    textField.getStyleClass().add("text-field");
 	    textField.setPrefSize(250, 40);
 	    textField.setPromptText("product name");
-	    hbox.getChildren().addAll(buttonqueue,buttonmachine,buttonmove,buttonconect,spacer,textField,addproduct);
+	    hbox.getChildren().addAll(buttonqueue,buttonmachine,buttonmove,buttonconect,run,spacer,textField,addproduct);
 
 	    return hbox;
 	}

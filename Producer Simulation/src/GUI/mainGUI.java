@@ -9,7 +9,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import models.Main;
 
 public class mainGUI extends Application{
 	
@@ -43,7 +45,7 @@ public class mainGUI extends Application{
 			DecoShape t = new DecoShape();
 			shapes.SetStackPane(t.getNode());
 			t.setShape(shapes.Qshape());
-			t.setText("Q"+String.valueOf(info.QCounter++));
+			t.setText(new Text("Q"+String.valueOf(info.QCounter++)));
 			method.HandleShape(t);
 			drawingArea.getChildren().add(t.getNode());
 		});
@@ -51,8 +53,12 @@ public class mainGUI extends Application{
 			DecoShape t = new DecoShape();
 			shapes.SetStackPane(t.getNode());
 			t.setShape(shapes.Mshape());
+			t.setText(new Text(" "));
 			method.HandleShape(t);
 			drawingArea.getChildren().add(t.getNode());
+		});
+		shapes.run.setOnAction(e ->{
+			Main.runthis();
 		});
 		shapes.DrageButton.setOnAction(e ->{
 			method.mode = 'D';
