@@ -58,7 +58,7 @@ public class mainGUI extends Application{
 			drawingArea.getChildren().add(t.getNode());
 		});
 		shapes.run.setOnAction(e ->{
-			Main.runthis();
+			//Main.runthis();
 		});
 		shapes.DrageButton.setOnAction(e ->{
 			method.mode = 'D';
