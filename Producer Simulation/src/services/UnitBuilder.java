@@ -13,7 +13,7 @@ public class UnitBuilder {
 	}
 	
 	
-	public void CreateMachine(String MachineName , int MachineTime , String PrevQueueName ,String NextQueueName) {
+	public void CreateMachine(String MachineName , long MachineTime , String PrevQueueName ,String NextQueueName) {
 		Machine m = new Machine(MachineName,MachineTime);
 		UnitQueue prev = this.OurUnit.getQueue(PrevQueueName);
 		if (prev == null) {
@@ -32,7 +32,7 @@ public class UnitBuilder {
 			prev.lastQueue = false;
 			addQueue(next);
 		}
-		m.setPrevQueue(prev);
+		//m.setPrevQueue(prev);
 		m.setNextQueue(next);
 		addMachine(m);
 	}

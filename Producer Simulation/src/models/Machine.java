@@ -2,24 +2,24 @@ package models;
 
 public class Machine implements Runnable {
 	
-	private UnitQueue prevQueue ;
+	//private UnitQueue prevQueue ;
 	private UnitQueue nextQueue ;
 	private long time;
 	private String Name;
 	private Product product;
 	private boolean avalible = true ;
-	public Machine(String Name,int time) {
+	public Machine(String Name,long time) {
 		this.Name = Name;
 		this.time = time;
 	}
 
-	public UnitQueue getPrevQueue() {
+	/*public UnitQueue getPrevQueue() {
 		return prevQueue;
 	}
 
 	public void setPrevQueue(UnitQueue prevQueue) {
 		this.prevQueue = prevQueue;
-	}
+	}*/
 
 	public UnitQueue getNextQueue() {
 		return nextQueue;
@@ -53,7 +53,7 @@ public class Machine implements Runnable {
 		this.product = product;
 	}
 	//public static Object LOCK = new Object();
-	@SuppressWarnings("deprecation")
+	/*@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		//set color
@@ -88,10 +88,25 @@ public class Machine implements Runnable {
 		}
 		//}
 		
+	}*/
+
+	@Override
+	public void run() {
+		long startTime = System.currentTimeMillis();
+		System.out.println(this.Name+" "+this.product.getColor());
+		while ((System.currentTimeMillis()-startTime)<this.time) {}
+		System.out.println("End " + this.Name+" "+this.product.getColor());
+		this.nextQueue.getProductsQueue().add(this.product);	
+		this.nextQueue.Simulate();
+		this.avalible = true ;		
 	}
 
 	public boolean isAvalible() {
 		return avalible;
+	}
+	
+	public void setAvailable(boolean b) {
+		this.avalible=b;
 	}
 
 	@Override

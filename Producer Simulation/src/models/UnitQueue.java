@@ -50,7 +50,7 @@ public class UnitQueue {
 	}
 	
 	
-	public void Simulate() {
+	public void SimulateOld() {
 		// check available
 		// check machine
 		//for
@@ -99,6 +99,31 @@ public class UnitQueue {
 			
 		}
 		
+	}
+	
+	public void Simulate() {
+		while (!this.productsQueue.isEmpty() && !this.lastQueue) {
+			Product product = this.productsQueue.poll();
+			if(product != null) {
+				Machine available = getAvailableMachine();
+				while (available==null) {
+					available = getAvailableMachine();
+				}
+				available.setAvailable(false);
+				available.setProduct(product);
+				new Thread(available).start();
+			}		
+		}
+		
+	}
+	
+	private Machine getAvailableMachine() {
+		for (int i = 0 ; i < this.availableMachines.size();i++) {
+			if (this.availableMachines.get(i).isAvalible()) {
+				return this.availableMachines.get(i);
+			}
+		}
+		return null;
 	}
 
 	@Override

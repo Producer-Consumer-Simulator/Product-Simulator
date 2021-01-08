@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		UnitBuilder ub = new UnitBuilder();
 		ub.CreateMachine("ahmed", 50 , "q0", "q1");
-		ub.CreateMachine("bbb", 40, "q1", "q2");
+		ub.CreateMachine("bbb", 80, "q1", "q2");
 		ub.CreateMachine("cccc", 20, "q1", "q3");
 		//ub.CreateMachine("ddd", 10, "q3", "q2");
 		Unit u = ub.toUnit();
