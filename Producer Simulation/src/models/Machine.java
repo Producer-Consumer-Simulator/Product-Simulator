@@ -8,6 +8,8 @@ public class Machine implements Runnable {
 	private String Name;
 	private Product product;
 	private boolean avalible = true ;
+	
+	
 	public Machine(String Name,long time) {
 		this.Name = Name;
 		this.time = time;
