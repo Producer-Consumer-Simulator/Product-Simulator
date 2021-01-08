@@ -10,13 +10,15 @@ public class UnitQueue {
 	private String Name;
 	private BlockingQueue<Product> productsQueue;
 	private ArrayList<Machine> availableMachines;
+	public boolean lastQueue = false;
 	//private ArrayList<Thread> availableMachinesThreads;
-	 
+	//private ArrayList<Machine> notAvailableMachines;
 	
 	public UnitQueue(String Name) {
 		this.Name = Name;
 		this.productsQueue = new ArrayBlockingQueue<Product>(10);
 		this.availableMachines = new ArrayList<Machine>();
+		//this.setNotAvailableMachines(new ArrayList<Machine>());
 		//this.availableMachinesThreads = new ArrayList<Thread>();
 	}
 	
@@ -47,11 +49,12 @@ public class UnitQueue {
 		Name = name;
 	}
 	
-	public void Simulate() {
+	
+	public void SimulateOld() {
 		// check available
 		// check machine
 		//for
-		while (!this.productsQueue.isEmpty()) {
+		while (!this.productsQueue.isEmpty()&& !this.lastQueue) {
 			/*while(this.productsQueue.poll() == null ) {
 				try {
 					wait();
@@ -61,27 +64,66 @@ public class UnitQueue {
 			}*/
 			Product product = this.productsQueue.peek();
 			if(product != null) {
-				for(int i = 0 ; i < this.availableMachines.size() ; i++) {
-					if(this.availableMachines.get(i).isAvalible()) {
+				
+				while (this.availableMachines.isEmpty() && !this.lastQueue) {
+					//wait();
+				}
+				//for(int i = 0 ; i < this.availableMachines.size() ; i++) {
+					//if(this.availableMachines.get(i).isAvalible()) {
 						//synchronized(this.availableMachines.get(i)) {
+				if(!this.availableMachines.isEmpty()) {
 							this.productsQueue.poll();
 							//System.out.println("Ahmed" + product.getColor() );
-							this.availableMachines.get(i).setProduct(product);
-							//new Thread(this.availableMachines.get(i)).start();
+							this.availableMachines.get(0).setProduct(product);
+							Thread t = new Thread(this.availableMachines.get(0));
+							t.start();
+							
 							//this.availableMachinesThreads.add(new Thread(this.availableMachines.get(i)));
 							//Thread t = this.availableMachinesThreads.get(i);
 							//synchronized (this.availableMachines.get(i).getProduct()) {
-							Thread t = new Thread(this.availableMachines.get(i));
-							t.start();
+							//Thread t = new Thread(this.availableMachines.get(0));
+							//t.start();
+							//if(!this.availableMachines.isEmpty())
+							this.availableMachines.remove(0);}
+							//this.notAvailableMachines.add(this.availableMachines.remove(0));
 							//}
-							break;
+							//break;
 						//}
-					}
-				}
+					//}
+				//}
 			}
+			
+			/*while (this.productsQueue.isEmpty()) {
+			
+			}*/
 			
 		}
 		
+	}
+	
+	public void Simulate() {
+		while (!this.productsQueue.isEmpty() && !this.lastQueue) {
+			Product product = this.productsQueue.poll();
+			if(product != null) {
+				Machine available = getAvailableMachine();
+				while (available==null) {
+					available = getAvailableMachine();
+				}
+				available.setAvailable(false);
+				available.setProduct(product);
+				new Thread(available).start();
+			}		
+		}
+		
+	}
+	
+	private Machine getAvailableMachine() {
+		for (int i = 0 ; i < this.availableMachines.size();i++) {
+			if (this.availableMachines.get(i).isAvalible()) {
+				return this.availableMachines.get(i);
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -89,6 +131,14 @@ public class UnitQueue {
 		return "UnitQueue [Name=" + Name + ", productsQueue=" + productsQueue + ", availableMachines="
 				+ availableMachines + "]";
 	}
+
+	/*public ArrayList<Machine> getNotAvailableMachines() {
+		return notAvailableMachines;
+	}
+
+	public void setNotAvailableMachines(ArrayList<Machine> notAvailableMachines) {
+		this.notAvailableMachines = notAvailableMachines;
+	}*/
 
 	/*public ArrayList<Thread> getAvailableMachinesThreads() {
 		return availableMachinesThreads;
