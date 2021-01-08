@@ -5,7 +5,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 
-public class UnitQueue {
+public class UnitQueue implements Runnable{
 	
 
 	private String Name;
@@ -106,20 +106,14 @@ public class UnitQueue {
 		
 	}
 	
-	public synchronized void Simulate(){
+	public void Simulate(){
 		while (!this.productsQueue.isEmpty() && !this.lastQueue) {
 			Product product = this.productsQueue.poll();
 			if(product != null) {
-				//Machine available = getAvailableMachine();
-				while (getAvailableMachine() == null) {
-					try {
-						wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
 				Machine available = getAvailableMachine();
+				while (available == null) {
+					available = getAvailableMachine();
+				}
 				available.setAvailable(false);
 				available.setProduct(product);
 				new Thread(available).start();
@@ -128,10 +122,9 @@ public class UnitQueue {
 		
 	}
 	
-	private synchronized Machine getAvailableMachine() {
+	private Machine getAvailableMachine() {
 		for (int i = 0 ; i < this.availableMachines.size();i++) {
 			if (this.availableMachines.get(i).isAvalible()) {
-				notify();
 				return this.availableMachines.get(i);
 			}
 		}
@@ -142,6 +135,12 @@ public class UnitQueue {
 	public String toString() {
 		return "UnitQueue [Name=" + Name + ", productsQueue=" + productsQueue + ", availableMachines="
 				+ availableMachines + "]";
+	}
+
+	@Override
+	public void run() {
+		this.Simulate();
+		
 	}
 
 	/*public ArrayList<Machine> getNotAvailableMachines() {

@@ -101,28 +101,31 @@ public class Machine implements Runnable {
 
 	@Override
 	public void run() {
-		//long startTime = System.currentTimeMillis();
-		synchronized(this) {
+		System.out.println("Machine " +this.guiShape.getTextString()+" starts "+this.product.getFirstName());
+		long startTime = System.currentTimeMillis();
+		//synchronized(this) {
 			try {
-			System.out.println("Machine memory: "+this);
 			this.guiShape.setColor(this.product.fxcolor);
-			this.guiShape.setText(this.product.getFirstName()+" "+this.time/1000);
-			System.out.println(/*this.Name+*/" "+this.product.getColor());
+			//System.out.println(this.product.getFirstName()+" "+this.product.getColor());
 			//this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
-			/*while (this.time-(System.currentTimeMillis()-startTime)>0) {
-				System.out.println("remaining time : " + (this.time-(System.currentTimeMillis()-startTime)) );
-			}*/
-			wait(this.time);
-			System.out.println("End " + /*this.Name+" "+*/this.product.getColor());
-			this.nextQueue.getProductsQueue().add(this.product);	
-			this.nextQueue.Simulate();
-			this.avalible = true ;
+			double t = this.time-(System.currentTimeMillis()-startTime);
+			while (t>0) {
+				//this.guiShape.setText(""+(int)t/1000);
+				t = this.time-(System.currentTimeMillis()-startTime);
+			}
+			//wait(this.time);
+			//System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
+			this.nextQueue.getProductsQueue().add(this.product);
 			this.guiShape.setColor(Color.GRAY);
-			this.guiShape.setText(" ");
+			//this.guiShape.setText(" ");
+			System.out.println("Machine " +this.guiShape.getTextString()+" ends "+this.product.getFirstName());
+			Thread t1 = new Thread(this.nextQueue);
+			t1.start();
+			this.avalible = true ;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		//}
 		
 	}
 

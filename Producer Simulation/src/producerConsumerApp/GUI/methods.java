@@ -193,10 +193,15 @@ public class methods {
 		UnitBuilder ub = new UnitBuilder();
 		treetoUnitBuilder(info.root, ub);
 		Unit u = ub.toUnit();
-		Product p1 = new Product("uu"), p2 = new Product("pp");
+		Product p1 = new Product("p1"), p2 = new Product("p2"),
+		p3 = new Product("p3"), p4 = new Product("p4"),
+		p5 = new Product("p5"), p6 = new Product("p6");
 		p1.fxcolor = Color.RED; p2.fxcolor = Color.GREEN;
-		u.addProduct(p1);
-		u.addProduct(p2);
+		p3.fxcolor = Color.YELLOW; p4.fxcolor = Color.BLUE;
+		p5.fxcolor = Color.PINK; p6.fxcolor = Color.CYAN;
+		u.addProduct(p1); u.addProduct(p2); u.addProduct(p3);
+		u.addProduct(p4); u.addProduct(p5); u.addProduct(p6);
+		System.out.println(u);
 		Thread t = new Thread (new BackMain());
 		t.start();
 	}
@@ -206,8 +211,8 @@ public class methods {
 		else if(root.getNext().size() == 0) return;
 		else {
 			for(int i=0; i<root.getNext().size();i++) {
-				if(root.getType() == 'M') {
-					System.out.println(root.getPrevious().get(0).getTextString());
+				if(root.getType() == 'M' && !root.visited) {
+					root.visited = true;
 					ub.CreateMachine(root, root.getPrevious().get(0).getTextString(), root.getNext().get(0).getTextString());
 				}
 				treetoUnitBuilder(root.getNext().get(i), ub);

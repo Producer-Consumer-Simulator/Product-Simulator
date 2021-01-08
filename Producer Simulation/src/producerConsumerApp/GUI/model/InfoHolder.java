@@ -21,6 +21,7 @@ public class InfoHolder {
 	public myshapes shapes;
 	public DecoShape root;
 	public int QCounter = 1;
+	public int Mcounter = 1;
 	public DecoShape[] twosides = new DecoShape[2];
 	public TableView<Product> table;
 	public ArrayList<Product> productInput = new ArrayList<Product>();

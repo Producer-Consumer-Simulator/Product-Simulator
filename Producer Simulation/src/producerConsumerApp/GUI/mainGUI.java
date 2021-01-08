@@ -54,7 +54,7 @@ public class mainGUI extends Application implements Runnable{
 			DecoShape t = new DecoShape();
 			shapes.SetStackPane(t.getNode());
 			t.setShape(shapes.Mshape());
-			t.setText(new Text(" "));
+			t.setText(new Text("M"+String.valueOf(info.Mcounter++)));
 			method.HandleShape(t);
 			drawingArea.getChildren().add(t.getNode());
 		});
