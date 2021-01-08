@@ -1,4 +1,4 @@
-package SnapShot;
+package services.SnapShot;
 
 import models.Unit;
 
@@ -14,7 +14,8 @@ public class Originator {
 	}
 	
 	public Memento saveStateToMemonto(Unit state) {
-		return new Memento(state);
+		Unit s = state.Copy();
+		return new Memento(s);
 	}
 	
 	public void  getStateFromMemento(Memento memento) {

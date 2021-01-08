@@ -1,16 +1,23 @@
 package models;
 
+import java.util.Random;
+
+import GUI.model.DecoShape;
+
 public class Machine implements Runnable {
 	
 	//private UnitQueue prevQueue ;
 	private UnitQueue nextQueue ;
 	private long time;
-	private String Name;
+	//private String Name;
 	private Product product;
+	private DecoShape guiShape;
 	private boolean avalible = true ;
-	public Machine(String Name,long time) {
-		this.Name = Name;
-		this.time = time;
+	
+	
+	public Machine(DecoShape shape) {
+		this.guiShape = shape;
+		this.time = new Random(60000).nextLong();
 	}
 
 	/*public UnitQueue getPrevQueue() {
@@ -37,13 +44,13 @@ public class Machine implements Runnable {
 		this.time = time;
 	}
 
-	public String getName() {
+	/*public String getName() {
 		return Name;
 	}
 
 	public void setName(String name) {
 		Name = name;
-	}
+	}*/
 
 	public Product getProduct() {
 		return product;
@@ -93,12 +100,22 @@ public class Machine implements Runnable {
 	@Override
 	public void run() {
 		long startTime = System.currentTimeMillis();
-		System.out.println(this.Name+" "+this.product.getColor());
-		while ((System.currentTimeMillis()-startTime)<this.time) {}
-		System.out.println("End " + this.Name+" "+this.product.getColor());
-		this.nextQueue.getProductsQueue().add(this.product);	
-		this.nextQueue.Simulate();
-		this.avalible = true ;		
+		synchronized(this) {
+			try {
+			System.out.println(/*this.Name+*/" "+this.product.getColor());
+			while (this.time-(System.currentTimeMillis()-startTime)>0) {
+				System.out.println("remaining time : " + (this.time-(System.currentTimeMillis()-startTime)) );
+			}
+			//wait(this.time);
+			System.out.println("End " + /*this.Name+" "+*/this.product.getColor());
+			this.nextQueue.getProductsQueue().add(this.product);	
+			this.nextQueue.Simulate();
+			this.avalible = true ;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public boolean isAvalible() {
@@ -111,8 +128,10 @@ public class Machine implements Runnable {
 
 	@Override
 	public String toString() {
-		return "Machine [nextQueue=" + nextQueue + ", time=" + time + ", Name=" + Name + ", product=" + product
+		return "Machine [nextQueue=" + nextQueue + ", time=" + time + ", product=" + product + ", guiShape=" + guiShape
 				+ ", avalible=" + avalible + "]";
 	}
+
+	
 
 }

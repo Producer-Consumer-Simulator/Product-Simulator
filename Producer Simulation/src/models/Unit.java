@@ -2,6 +2,9 @@ package models;
 
 import java.util.ArrayList;
 
+import GUI.model.DecoShape;
+import services.UnitBuilder;
+
 public class Unit {
 	
 	private ArrayList<UnitQueue> FactoryQueues ;
@@ -10,6 +13,13 @@ public class Unit {
 	public Unit() {
 		FactoryQueues = new ArrayList<UnitQueue>();
 		FactoryMachines = new ArrayList<Machine>();
+	}
+	@SuppressWarnings("unchecked")
+	public Unit Copy () {
+		Unit s = new Unit();
+		s.FactoryQueues = (ArrayList<UnitQueue>) this.FactoryQueues.clone();
+		s.FactoryMachines = (ArrayList<Machine>) this.FactoryMachines.clone();
+		return s;
 	}
 	
 	public void addQueue(UnitQueue q) {
@@ -44,6 +54,21 @@ public class Unit {
 	public void removeMachine (int index) {
 		FactoryMachines.remove(index);
 	}
+	
+	public boolean addProduct(Product p) {
+		if (!FactoryQueues.isEmpty()) {
+			FactoryQueues.get(0).addProduct(p);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public void CreateMachine(DecoShape shape, String PrevQueueName ,String NextQueueName) {
+		UnitBuilder b = new UnitBuilder(this);
+		b.CreateMachine(shape, PrevQueueName, NextQueueName);
+	}
+	
 	
 	
 	public void Simulate() {
