@@ -9,6 +9,7 @@ public class Unit {
 	private ArrayList<Product> FinishedProducts;
 	
 	public Object Lock = new Object();
+	public Object FullLock = new Object();
 
 	private Unit() {
 		FactoryQueues = new ArrayList<UnitQueue>();

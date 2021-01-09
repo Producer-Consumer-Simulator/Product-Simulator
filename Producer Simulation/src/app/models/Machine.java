@@ -105,8 +105,11 @@ public class Machine implements Runnable {
 				  System.out.println(ti);
 				//wait(this.time);
 				// System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
-				while (this.nextQueue.isFullProductQueue()) {}
-				this.nextQueue.getProductsQueue().add(this.product);
+				  synchronized (Unit.getInstance().FullLock) {
+					  while (this.nextQueue.isFullProductQueue()) {Unit.getInstance().FullLock.wait();}
+					  this.nextQueue.getProductsQueue().add(this.product);
+				  }
+				
 				// this.guiShape.setText(" ");
 				System.out.println("Machine " + this.guiShape.getTextString() + " ends " + this.product.getFirstName());
 				this.guiShape.setColor(Color.GRAY);

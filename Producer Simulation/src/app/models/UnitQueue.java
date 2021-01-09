@@ -122,6 +122,9 @@ public class UnitQueue implements Runnable {
 			synchronized (productsQueue) {
 				Product product = this.productsQueue.poll();
 				if (product != null) {
+					synchronized (Unit.getInstance().FullLock) {
+						Unit.getInstance().FullLock.notify();
+					}
 					Machine available = getAvailableMachine();
 					while (available == null) {
 						try {
