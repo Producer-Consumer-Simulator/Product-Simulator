@@ -92,14 +92,14 @@ public class Unit {
 	 * b.CreateMachine(shape, PrevQueueName, NextQueueName); }
 	 */
 
-	public void Simulate() {
+	/*public void Simulate() {
 		// get 1st queue
 		// simulate
 		if (this.FactoryQueues.get(0) != null) {
 			// this.FactoryQueues.get(0).Simulate();
 			new Thread(this.FactoryQueues.get(0)).start();
 		}
-	}
+	}*/
 
 	@Override
 	public String toString() {
