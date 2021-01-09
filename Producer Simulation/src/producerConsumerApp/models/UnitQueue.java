@@ -66,6 +66,10 @@ public class UnitQueue implements Runnable {
 		Name = name;
 	}
 
+	public boolean isFullProductQueue() {
+		return this.productsQueue.size() == 10;
+	}
+
 	public void SimulateOld() {
 		// check available
 		// check machine
@@ -117,7 +121,34 @@ public class UnitQueue implements Runnable {
 
 	}
 
-	public void Simulate() {
+	public void Simulate(Product p) {
+		Machine available = getAvailableMachine();
+		while (available == null) {
+			available = getAvailableMachine();
+		}
+		available.setProduct(p);
+		available.setAvailable(false);
+		// synchronized (available.getProduct()) {
+		new Thread(available).start();
+	}
+
+	private Machine getAvailableMachine() {
+		for (int i = 0; i < this.availableMachines.size(); i++) {
+			if (this.availableMachines.get(i).isAvalible()) {
+				return this.availableMachines.get(i);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "UnitQueue [Name=" + Name + ", productsQueue=" + productsQueue + ", availableMachines="
+				+ availableMachines + "]";
+	}
+
+	@Override
+	public void run() {
 		while (!this.productsQueue.isEmpty()/* && !this.lastQueue */) {
 			if (this.lastQueue) {
 				Unit u = Unit.getInstance();
@@ -139,28 +170,6 @@ public class UnitQueue implements Runnable {
 				}
 			}
 		}
-
-	}
-
-	private Machine getAvailableMachine() {
-		for (int i = 0; i < this.availableMachines.size(); i++) {
-			if (this.availableMachines.get(i).isAvalible()) {
-				return this.availableMachines.get(i);
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public String toString() {
-		return "UnitQueue [Name=" + Name + ", productsQueue=" + productsQueue + ", availableMachines="
-				+ availableMachines + "]";
-	}
-
-	@Override
-	public void run() {
-		this.Simulate();
-
 	}
 
 	/*

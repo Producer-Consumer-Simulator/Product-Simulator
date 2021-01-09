@@ -35,6 +35,10 @@ public class Unit {
 	public void addQueue(UnitQueue q) {
 		FactoryQueues.add(q);
 	}
+	
+	public UnitQueue getFirstQueue() {
+		return FactoryQueues.get(0);
+	}
 
 	public void removeQueue(int index) {
 		FactoryQueues.remove(index);

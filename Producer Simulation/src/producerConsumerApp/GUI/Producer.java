@@ -3,12 +3,13 @@ package producerConsumerApp.GUI;
 import producerConsumerApp.models.Product;
 import producerConsumerApp.models.Unit;
 
-public class add_product implements Runnable {
+public class Producer implements Runnable {
 	private String text;
-
-	public add_product(String te) {
-		this.text = te;
+	
+	public Producer(String text ) {
+		this.text=text;
 	}
+
 
 	@Override
 	public void run() {
@@ -23,10 +24,10 @@ public class add_product implements Runnable {
 
 	public synchronized void add(Product s) throws InterruptedException {
 		Unit c = Unit.getInstance();
-		if (c.getfactorqueue().get(0).getproductsqueue().size() == 10) {
+		while (c.getFirstQueue().isFullProductQueue()) {
 			wait();
 		}
 		c.addProduct(s);
-		notifyAll();
+		notify();
 	}
 }

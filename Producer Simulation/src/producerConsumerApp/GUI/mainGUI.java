@@ -90,7 +90,7 @@ public class mainGUI extends Application implements Runnable {
 			if (!text.equals(textNull)) {
 				info.productInput.add(new Product(text));
 				method.fillTable(info.productInput);
-				Thread t = new Thread(new add_product(text));
+				Thread t = new Thread(new Producer(text));
 				t.start();
 			}
 		});

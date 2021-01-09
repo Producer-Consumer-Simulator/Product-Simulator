@@ -50,7 +50,7 @@ public class methods {
 				else {
 					info.twosides[1] = shape;
 					FirstNodeClicked = false;
-					if(connectUs()) {
+					if(connectUs()) { 
 						System.out.println("connected!");
 						info.twosides[1].setPrevious(info.twosides[0]);
 						drawLine();						
@@ -204,6 +204,7 @@ public class methods {
 		System.out.println(u);
 		Thread t = new Thread (new Consumer());
 		t.start(); 
+		//new Thread (new Producer()).start();;
 	}
 	
 	private static void treetoUnitBuilder(DecoShape root, UnitBuilder ub) {
