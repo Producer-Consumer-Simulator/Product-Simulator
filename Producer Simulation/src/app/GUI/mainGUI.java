@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class mainGUI extends Application implements Runnable {
 
 	private String[] args;
-	private boolean check = false;
+	//private boolean check = false;
 	public ArrayList<String> queue = new ArrayList<String>();
 	String textNull = "\n";
 
@@ -93,7 +93,7 @@ public class mainGUI extends Application implements Runnable {
 				method.fillTable(info.productInput);
 				/*Thread t = new Thread(new Producer(text));
 				t.start();*/
-				ProducerConsumer pc = new ProducerConsumer();
+				ProducerConsumer pc = ProducerConsumer.getInstance();
 				pc.produce(new Product(text));
 			}
 		});

@@ -2,7 +2,15 @@ package app.models;
 
 public class ProducerConsumer {
 	Unit u = Unit.getInstance();
-	
+	private static ProducerConsumer instance;
+	private ProducerConsumer() {
+		
+	}
+	public static ProducerConsumer getInstance() {
+		if (instance == null)
+			instance = new ProducerConsumer();
+		return instance;
+	}
 	
 	public void produce(Product p) {
 		synchronized (this) {

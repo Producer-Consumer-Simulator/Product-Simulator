@@ -204,7 +204,7 @@ public class methods {
 		System.out.println(u);
 		/*Thread t = new Thread (new ProducerConsumer());
 		t.start(); */
-		ProducerConsumer pc = new ProducerConsumer();
+		ProducerConsumer pc = ProducerConsumer.getInstance();
 		
 		Thread t1 = new Thread(new Runnable() { 
             @Override
