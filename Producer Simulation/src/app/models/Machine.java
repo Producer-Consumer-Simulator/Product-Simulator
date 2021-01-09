@@ -112,9 +112,11 @@ public class Machine implements Runnable {
 				synchronized (nextQueue) {
 					new Thread(this.nextQueue).start();
 				}
+				notify();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		}
 
 	}
