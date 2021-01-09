@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import app.GUI.model.DecoShape;
 import app.GUI.model.InfoHolder;
 import app.GUI.model.myshapes;
+import app.models.ProducerConsumer;
 import app.models.Product;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -90,8 +91,10 @@ public class mainGUI extends Application implements Runnable {
 			if (!text.equals(textNull)) {
 				info.productInput.add(new Product(text));
 				method.fillTable(info.productInput);
-				Thread t = new Thread(new Producer(text));
-				t.start();
+				/*Thread t = new Thread(new Producer(text));
+				t.start();*/
+				ProducerConsumer pc = new ProducerConsumer();
+				pc.produce(new Product(text));
 			}
 		});
 

@@ -19,7 +19,7 @@ public class Machine implements Runnable {
 		this.Name = Name;
 		this.guiShape = shape;
 		Random r = new Random();
-		this.time = 250 + r.nextInt(20000);
+		this.time = 500 + r.nextInt(30000);
 	}
 
 	/*
@@ -87,17 +87,18 @@ public class Machine implements Runnable {
 	@Override
 	public void run() {
 		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName());
-		// long startTime = System.currentTimeMillis();
+		 long startTime = System.currentTimeMillis();
 		synchronized (this) {
 			try {
 				this.guiShape.setColor(this.product.fxcolor);
 				// System.out.println(this.product.getFirstName()+" "+this.product.getColor());
 				// this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
-				/*
-				 * double t = this.time-(System.currentTimeMillis()-startTime); while (t>0) {
-				 * //this.guiShape.setText(""+(int)t/1000); t =
-				 * this.time-(System.currentTimeMillis()-startTime); }
-				 */
+				 /* double t = this.time-(System.currentTimeMillis()-startTime);
+				  while (t>0) {
+					  wait(1000);
+					  this.guiShape.setText(""+(int)t/1000);
+					  t =this.time-(System.currentTimeMillis()-startTime); 
+				  }*/
 				wait(this.time);
 				// System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
 				while (this.nextQueue.isFullProductQueue()) {}

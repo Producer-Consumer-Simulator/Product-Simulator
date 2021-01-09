@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import app.GUI.model.DecoShape;
 import app.GUI.model.InfoHolder;
-import app.models.Consumer;
+import app.models.ProducerConsumer;
 import app.models.Product;
 import app.models.Unit;
 import app.services.UnitBuilder;
@@ -202,8 +202,18 @@ public class methods {
 		u.addProduct(p1); u.addProduct(p2); u.addProduct(p3);
 		u.addProduct(p4); u.addProduct(p5); u.addProduct(p6);
 		System.out.println(u);
-		Thread t = new Thread (new Consumer());
-		t.start(); 
+		/*Thread t = new Thread (new ProducerConsumer());
+		t.start(); */
+		ProducerConsumer pc = new ProducerConsumer();
+		
+		Thread t1 = new Thread(new Runnable() { 
+            @Override
+            public void run() 
+            { 
+            	pc.Consume(); 
+            } 
+        });
+		t1.start();
 		//new Thread (new Producer()).start();;
 	}
 	
