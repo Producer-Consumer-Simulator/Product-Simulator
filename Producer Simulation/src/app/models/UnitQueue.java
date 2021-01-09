@@ -161,7 +161,13 @@ public class UnitQueue implements Runnable {
 				if (product != null) {
 					Machine available = getAvailableMachine();
 					while (available == null) {
-						available = getAvailableMachine();
+						try {
+							wait(1000);
+							available = getAvailableMachine();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					available.setProduct(product);
 					available.setAvailable(false);

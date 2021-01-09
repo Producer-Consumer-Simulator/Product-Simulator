@@ -19,7 +19,7 @@ public class Machine implements Runnable {
 		this.Name = Name;
 		this.guiShape = shape;
 		Random r = new Random();
-		this.time = 500 + r.nextInt(30000);
+		this.time = 1000 + r.nextInt(30000);
 	}
 
 	/*
