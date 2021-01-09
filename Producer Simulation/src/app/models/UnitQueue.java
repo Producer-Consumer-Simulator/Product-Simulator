@@ -125,10 +125,10 @@ public class UnitQueue implements Runnable {
 					Machine available = getAvailableMachine();
 					while (available == null) {
 						try {
-							wait(1000);
+							//wait(1000);
 							available = getAvailableMachine();
 							System.out.println("hello");
-						} catch (InterruptedException e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
