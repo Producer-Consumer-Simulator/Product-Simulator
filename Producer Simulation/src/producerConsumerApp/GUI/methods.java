@@ -16,7 +16,7 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Callback;
 import producerConsumerApp.GUI.model.DecoShape;
 import producerConsumerApp.GUI.model.InfoHolder;
-import producerConsumerApp.models.BackMain;
+import producerConsumerApp.models.Consumer;
 import producerConsumerApp.models.Product;
 import producerConsumerApp.models.Unit;
 import producerConsumerApp.services.UnitBuilder;
@@ -202,8 +202,8 @@ public class methods {
 		u.addProduct(p1); u.addProduct(p2); u.addProduct(p3);
 		u.addProduct(p4); u.addProduct(p5); u.addProduct(p6);
 		System.out.println(u);
-		Thread t = new Thread (new BackMain());
-		t.start();
+		Thread t = new Thread (new Consumer());
+		t.start(); 
 	}
 	
 	private static void treetoUnitBuilder(DecoShape root, UnitBuilder ub) {
@@ -211,9 +211,9 @@ public class methods {
 		else if(root.getNext().size() == 0) return;
 		else {
 			for(int i=0; i<root.getNext().size();i++) {
-				if(root.getType() == 'M' && !root.visited) {
+				if(root.getType() == 'M'/* && !root.visited*/) {
 					root.visited = true;
-					ub.CreateMachine(root, root.getPrevious().get(0).getTextString(), root.getNext().get(0).getTextString());
+					ub.CreateMachine(root,root.getTextString(),root.getPrevious().get(0).getTextString(), root.getNext().get(0).getTextString());
 				}
 				treetoUnitBuilder(root.getNext().get(i), ub);
 			}

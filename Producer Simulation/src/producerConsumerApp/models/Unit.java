@@ -2,69 +2,78 @@ package producerConsumerApp.models;
 
 import java.util.ArrayList;
 
-import producerConsumerApp.GUI.model.DecoShape;
-import producerConsumerApp.services.UnitBuilder;
-
 public class Unit {
 	private static Unit instance;
-	private ArrayList<UnitQueue> FactoryQueues ;
-	private ArrayList<Machine> FactoryMachines ;
-	
+	private ArrayList<UnitQueue> FactoryQueues;
+	private ArrayList<Machine> FactoryMachines;
+	private ArrayList<Product> FinishedProducts;
+
 	private Unit() {
 		FactoryQueues = new ArrayList<UnitQueue>();
 		FactoryMachines = new ArrayList<Machine>();
+		setFinishedProducts(new ArrayList<Product>());
 	}
-	
+
 	public static Unit getInstance() {
-		if(instance == null)
+		if (instance == null)
 			instance = new Unit();
 		return instance;
 	}
-	public ArrayList<UnitQueue> getfactorqueue(){
+
+	public ArrayList<UnitQueue> getfactorqueue() {
 		return FactoryQueues;
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public Unit Copy () {
+	public Unit Copy() {
 		Unit s = new Unit();
 		s.FactoryQueues = (ArrayList<UnitQueue>) this.FactoryQueues.clone();
 		s.FactoryMachines = (ArrayList<Machine>) this.FactoryMachines.clone();
 		return s;
 	}
-	
+
 	public void addQueue(UnitQueue q) {
 		FactoryQueues.add(q);
 	}
-	
-	public void removeQueue (int index) {
+
+	public void removeQueue(int index) {
 		FactoryQueues.remove(index);
 	}
-	
+
 	public int QueueSize() {
 		return this.FactoryQueues.size();
 	}
-	
+
 	public boolean isEmptyQueues() {
 		return this.FactoryQueues.size() == 0;
 	}
-	
-	public UnitQueue getQueue (String Name) {
-		for (int i = 0 ; i < FactoryQueues.size();i++ ) {
+
+	public UnitQueue getQueue(String Name) {
+		for (int i = 0; i < FactoryQueues.size(); i++) {
 			if (FactoryQueues.get(i).getName().equalsIgnoreCase(Name)) {
 				return FactoryQueues.get(i);
 			}
 		}
 		return null;
 	}
-	
+
+	public Machine getMachine(String Name) {
+		for (int i = 0; i < FactoryMachines.size(); i++) {
+			if (FactoryMachines.get(i).getName().equalsIgnoreCase(Name)) {
+				return FactoryMachines.get(i);
+			}
+		}
+		return null;
+	}
+
 	public void addMachine(Machine m) {
 		FactoryMachines.add(m);
 	}
-	
-	public void removeMachine (int index) {
+
+	public void removeMachine(int index) {
 		FactoryMachines.remove(index);
 	}
-	
+
 	public boolean addProduct(Product p) {
 		if (!FactoryQueues.isEmpty()) {
 			FactoryQueues.get(0).addProduct(p);
@@ -72,20 +81,19 @@ public class Unit {
 		}
 		return false;
 	}
-	
-	
-	public void CreateMachine(DecoShape shape, String PrevQueueName ,String NextQueueName) {
-		UnitBuilder b = new UnitBuilder(this);
-		b.CreateMachine(shape, PrevQueueName, NextQueueName);
-	}
-	
-	
-	
+
+	/*
+	 * public void CreateMachine(DecoShape shape, String PrevQueueName ,String
+	 * NextQueueName) { UnitBuilder b = new UnitBuilder(this);
+	 * b.CreateMachine(shape, PrevQueueName, NextQueueName); }
+	 */
+
 	public void Simulate() {
-		//get 1st queue
-		//simulate
-		if(this.FactoryQueues.get(0) != null) {
-			this.FactoryQueues.get(0).Simulate();
+		// get 1st queue
+		// simulate
+		if (this.FactoryQueues.get(0) != null) {
+			// this.FactoryQueues.get(0).Simulate();
+			new Thread(this.FactoryQueues.get(0)).start();
 		}
 	}
 
@@ -93,6 +101,13 @@ public class Unit {
 	public String toString() {
 		return "Unit [FactoryQueues=" + FactoryQueues + ", FactoryMachines=" + FactoryMachines + "]";
 	}
-	
-	
+
+	public ArrayList<Product> getFinishedProducts() {
+		return FinishedProducts;
+	}
+
+	public void setFinishedProducts(ArrayList<Product> finishedProducts) {
+		FinishedProducts = finishedProducts;
+	}
+
 }

@@ -12,15 +12,14 @@ public class Originator {
 	public void setState(Unit state) {
 		this.state = state;
 	}
-	
+
 	public Memento saveStateToMemonto(Unit state) {
 		Unit s = state.Copy();
 		return new Memento(s);
 	}
-	
-	public void  getStateFromMemento(Memento memento) {
+
+	public void getStateFromMemento(Memento memento) {
 		state = memento.getState();
 	}
-	
-	
+
 }

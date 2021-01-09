@@ -17,8 +17,11 @@ public class UnitBuilder {
 		this.OurUnit = unit;
 	}
 	
-	public void CreateMachine(DecoShape shape, String PrevQueueName ,String NextQueueName) {
-		Machine m = new Machine(shape);
+	public void CreateMachine(DecoShape shape,String Name,String PrevQueueName ,String NextQueueName) {
+		Machine m = this.OurUnit.getMachine(Name);
+		if (m == null) {
+			m = new Machine(shape,Name);
+		}
 		UnitQueue prev = this.OurUnit.getQueue(PrevQueueName);
 		if (prev == null) {
 			prev = new UnitQueue(PrevQueueName);
@@ -42,7 +45,7 @@ public class UnitBuilder {
 	
 	public void addQueue(UnitQueue q) {
 		this.OurUnit.addQueue(q);
-	}
+	} 
 	
 	public Unit toUnit() {
 		return this.OurUnit;

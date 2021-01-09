@@ -8,10 +8,9 @@ public class Memento {
 	public Memento(Unit state) {
 		this.state = state;
 	}
-	
+
 	public Unit getState() {
 		return state;
 	}
 
-	
 }
