@@ -94,10 +94,6 @@ public class UnitQueue implements Runnable {
 		}
 	}
 	
-	private void test() {
-		
-	}
-	
 
 	private Machine getAvailableMachine() {
 		for (int i = 0; i < this.availableMachines.size(); i++) {
