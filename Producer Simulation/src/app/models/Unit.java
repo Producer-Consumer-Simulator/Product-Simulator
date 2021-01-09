@@ -7,6 +7,8 @@ public class Unit {
 	private ArrayList<UnitQueue> FactoryQueues;
 	private ArrayList<Machine> FactoryMachines;
 	private ArrayList<Product> FinishedProducts;
+	
+	public Object Lock = new Object();
 
 	private Unit() {
 		FactoryQueues = new ArrayList<UnitQueue>();

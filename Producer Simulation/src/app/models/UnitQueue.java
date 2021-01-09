@@ -73,16 +73,31 @@ public class UnitQueue implements Runnable {
 	
 
 	public void Simulate(Product p) {
-		Machine available = getAvailableMachine();
-		while (available == null) {
-			available = getAvailableMachine();
-			
+		Unit u = Unit.getInstance();
+		synchronized (u.Lock) {
+			Machine available = getAvailableMachine();
+			while (available == null) {
+				try {
+					System.out.println("Simulate is wait");
+					u.Lock.wait();
+					System.out.println("Simulate is Not wait");
+					available = getAvailableMachine();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			available.setProduct(p);
+			available.setAvailable(false);
+			//synchronized (available.getProduct()) {
+			new Thread(available).start();
 		}
-		available.setProduct(p);
-		available.setAvailable(false);
-		// synchronized (available.getProduct()) {
-		new Thread(available).start();
 	}
+	
+	private void test() {
+		
+	}
+	
 
 	private Machine getAvailableMachine() {
 		for (int i = 0; i < this.availableMachines.size(); i++) {

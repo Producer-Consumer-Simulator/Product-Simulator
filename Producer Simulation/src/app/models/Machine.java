@@ -113,6 +113,9 @@ public class Machine implements Runnable {
 					new Thread(this.nextQueue).start();
 				}
 				notify();
+				synchronized (Unit.getInstance().Lock) {
+					Unit.getInstance().Lock.notify();
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
