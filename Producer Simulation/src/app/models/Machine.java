@@ -93,13 +93,15 @@ public class Machine implements Runnable {
 				this.guiShape.setColor(this.product.fxcolor);
 				// System.out.println(this.product.getFirstName()+" "+this.product.getColor());
 				// this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
-				 /* double t = this.time-(System.currentTimeMillis()-startTime);
+				  long t = this.time-(System.currentTimeMillis()-startTime);
 				  while (t>0) {
 					  wait(1000);
-					  this.guiShape.setText(""+(int)t/1000);
+					  String ti = Long.toString(t/1000);
+					  System.out.println(ti);
+					  this.guiShape.setText(ti);
 					  t =this.time-(System.currentTimeMillis()-startTime); 
-				  }*/
-				wait(this.time);
+				  }
+				//wait(this.time);
 				// System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
 				while (this.nextQueue.isFullProductQueue()) {}
 				this.nextQueue.getProductsQueue().add(this.product);
