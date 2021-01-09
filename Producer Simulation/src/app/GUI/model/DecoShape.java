@@ -91,9 +91,9 @@ public class DecoShape {
 	}
 
 	public void setPrevious(DecoShape pre) {
-		if (this.shape.getId().charAt(0) == 'M' && this.previous.size() >= 1) {
+		/*if (this.shape.getId().charAt(0) == 'M' && this.previous.size() >= 1) {
 			System.out.println("M should have one previous shape only");
-		}
+		}*/
 		this.previous.add(pre);
 	}
 

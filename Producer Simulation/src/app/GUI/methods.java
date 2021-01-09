@@ -224,7 +224,8 @@ public class methods {
 			for(int i=0; i<root.getNext().size();i++) {
 				if(root.getType() == 'M'/* && !root.visited*/) {
 					root.visited = true;
-					ub.CreateMachine(root,root.getTextString(),root.getPrevious().get(0).getTextString(), root.getNext().get(0).getTextString());
+					for(int j = 0 ; j < root.getPrevious().size() ; j++) {
+					ub.CreateMachine(root,root.getTextString(),root.getPrevious().get(j).getTextString(), root.getNext().get(0).getTextString());}
 				}
 				treetoUnitBuilder(root.getNext().get(i), ub);
 			}
