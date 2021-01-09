@@ -101,8 +101,8 @@ public class Machine implements Runnable {
 					  this.guiShape.setText(ti);
 					  t =this.time-(System.currentTimeMillis()-startTime); 
 				  }
-				  String ti = Long.toString(this.time/1000);
-				  System.out.println(ti);
+				  //String ti = Long.toString(this.time/1000);
+				 // System.out.println(ti);
 				//wait(this.time);
 				// System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
 				  synchronized (Unit.getInstance().FullLock) {

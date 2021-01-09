@@ -195,12 +195,28 @@ public class methods {
 		Unit u = ub.toUnit();
 		Product p1 = new Product("p1"), p2 = new Product("p2"),
 		p3 = new Product("p3"), p4 = new Product("p4"),
-		p5 = new Product("p5"), p6 = new Product("p6");
+		p5 = new Product("p5"), p6 = new Product("p6"),
+		p7 = new Product("p7"), p8 = new Product("p8"),
+		p9 = new Product("p9"), p10 = new Product("p10"),
+		p11 = new Product("p11"), p12 = new Product("p12"),
+		p13 = new Product("p13"), p14 = new Product("p14"),
+		p15 = new Product("p15"), p16 = new Product("p16");
+				
 		p1.fxcolor = Color.RED; p2.fxcolor = Color.GREEN;
 		p3.fxcolor = Color.YELLOW; p4.fxcolor = Color.BLUE;
 		p5.fxcolor = Color.PINK; p6.fxcolor = Color.CYAN;
+		p7.fxcolor = Color.RED; p8.fxcolor = Color.GREEN;
+		p9.fxcolor = Color.YELLOW; p10.fxcolor = Color.BLUE;
+		p11.fxcolor = Color.PINK; p12.fxcolor = Color.CYAN;
+		p13.fxcolor = Color.YELLOW; p14.fxcolor = Color.BLUE;
+		p15.fxcolor = Color.PINK; p16.fxcolor = Color.CYAN;
+		
 		u.addProduct(p1); u.addProduct(p2); u.addProduct(p3);
 		u.addProduct(p4); u.addProduct(p5); u.addProduct(p6);
+		u.addProduct(p7); u.addProduct(p8); u.addProduct(p9);
+		u.addProduct(p10);/* u.addProduct(p11); u.addProduct(p12);
+		u.addProduct(p13); u.addProduct(p14); u.addProduct(p15);
+		u.addProduct(p16); */
 		System.out.println(u);
 		/*Thread t = new Thread (new ProducerConsumer());
 		t.start(); */
