@@ -214,7 +214,7 @@ public class methods {
             } 
         });
 		t1.start();
-		//new Thread (new Producer()).start();;
+		//new Thread(new productGui()).start();
 	}
 	
 	private static void treetoUnitBuilder(DecoShape root, UnitBuilder ub) {
