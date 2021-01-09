@@ -1,5 +1,7 @@
 package producerConsumerApp.GUI;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,13 +13,14 @@ import producerConsumerApp.GUI.model.DecoShape;
 import producerConsumerApp.GUI.model.InfoHolder;
 import producerConsumerApp.GUI.model.myshapes;
 import producerConsumerApp.models.Product;
+import producerConsumerApp.models.Unit;
 
 public class mainGUI extends Application implements Runnable{
 	
 	private String[] args;
-	
+	private boolean check=false;
+	public ArrayList<String> queue = new ArrayList<String>();
 	String textNull = "\n";
-	
 	@Override
 	public void start(Stage window) throws Exception {
 		
@@ -54,7 +57,7 @@ public class mainGUI extends Application implements Runnable{
 			DecoShape t = new DecoShape();
 			shapes.SetStackPane(t.getNode());
 			t.setShape(shapes.Mshape());
-			t.setText(new Text(" "));
+			t.setText(new Text("M"+String.valueOf(info.Mcounter++)));
 			method.HandleShape(t);
 			drawingArea.getChildren().add(t.getNode());
 		});
@@ -100,6 +103,8 @@ public class mainGUI extends Application implements Runnable{
 			if(!text.equals(textNull)) {
 				info.productInput.add(new Product(text));
 				method.fillTable(info.productInput);
+				Thread t=new Thread(new add_product(text));
+				t.start();
 			}
 		});
 		
@@ -128,4 +133,5 @@ public class mainGUI extends Application implements Runnable{
 		// TODO Auto-generated method stub
 		launch(args);
 	}
+	
 }

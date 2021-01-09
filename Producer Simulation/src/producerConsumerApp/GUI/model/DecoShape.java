@@ -10,6 +10,7 @@ import producerConsumerApp.models.Product;
 
 public class DecoShape {
 	
+	public boolean visited = false;
 	private StackPane node;
 	private Shape shape;
 	private Text text = new Text();

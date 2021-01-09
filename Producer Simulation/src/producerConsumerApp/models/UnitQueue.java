@@ -5,7 +5,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 
-public class UnitQueue {
+public class UnitQueue implements Runnable{
 	
 
 	private String Name;
@@ -22,7 +22,9 @@ public class UnitQueue {
 		//this.setNotAvailableMachines(new ArrayList<Machine>());
 		//this.availableMachinesThreads = new ArrayList<Thread>();
 	}
-	
+	public BlockingQueue<Product> getproductsqueue(){
+		return productsQueue;
+	}
 	public void addAvailableMachine(Machine m) {
 		this.availableMachines.add(m);
 	}
@@ -106,12 +108,12 @@ public class UnitQueue {
 		
 	}
 	
-	public void Simulate() {
+	public void Simulate(){
 		while (!this.productsQueue.isEmpty() && !this.lastQueue) {
 			Product product = this.productsQueue.poll();
 			if(product != null) {
 				Machine available = getAvailableMachine();
-				while (available==null) {
+				while (available == null) {
 					available = getAvailableMachine();
 				}
 				available.setAvailable(false);
@@ -125,17 +127,24 @@ public class UnitQueue {
 	private Machine getAvailableMachine() {
 		for (int i = 0 ; i < this.availableMachines.size();i++) {
 			if (this.availableMachines.get(i).isAvalible()) {
-				this.availableMachines.get(i).setAvailable(false);
 				return this.availableMachines.get(i);
 			}
 		}
 		return null;
 	}
-
+	
+	
+	
 	@Override
 	public String toString() {
 		return "UnitQueue [Name=" + Name + ", productsQueue=" + productsQueue + ", availableMachines="
 				+ availableMachines + "]";
+	}
+
+	@Override
+	public void run() {
+		this.Simulate();
+		
 	}
 
 	/*public ArrayList<Machine> getNotAvailableMachines() {

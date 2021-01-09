@@ -20,7 +20,9 @@ public class Unit {
 			instance = new Unit();
 		return instance;
 	}
-	
+	public ArrayList<UnitQueue> getfactorqueue(){
+		return FactoryQueues;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public Unit Copy () {
