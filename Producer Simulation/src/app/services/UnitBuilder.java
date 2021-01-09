@@ -1,9 +1,9 @@
-package producerConsumerApp.services;
+package app.services;
 
-import producerConsumerApp.GUI.model.DecoShape;
-import producerConsumerApp.models.Machine;
-import producerConsumerApp.models.Unit;
-import producerConsumerApp.models.UnitQueue;
+import app.GUI.model.DecoShape;
+import app.models.Machine;
+import app.models.Unit;
+import app.models.UnitQueue;
 
 public class UnitBuilder {
 	

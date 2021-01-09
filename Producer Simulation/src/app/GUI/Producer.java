@@ -1,7 +1,7 @@
-package producerConsumerApp.GUI;
+package app.GUI;
 
-import producerConsumerApp.models.Product;
-import producerConsumerApp.models.Unit;
+import app.models.Product;
+import app.models.Unit;
 
 public class Producer implements Runnable {
 	private String text;

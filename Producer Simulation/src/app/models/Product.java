@@ -1,4 +1,4 @@
-package producerConsumerApp.models;
+package app.models;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.paint.Color;

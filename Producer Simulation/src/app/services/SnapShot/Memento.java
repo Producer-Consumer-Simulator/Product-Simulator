@@ -1,6 +1,6 @@
-package producerConsumerApp.services.SnapShot;
+package app.services.SnapShot;
 
-import producerConsumerApp.models.Unit;
+import app.models.Unit;
 
 public class Memento {
 	private Unit state;

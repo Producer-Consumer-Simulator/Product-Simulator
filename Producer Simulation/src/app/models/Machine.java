@@ -1,9 +1,9 @@
-package producerConsumerApp.models;
+package app.models;
 
 import java.util.Random;
 
+import app.GUI.model.DecoShape;
 import javafx.scene.paint.Color;
-import producerConsumerApp.GUI.model.DecoShape;
 
 public class Machine implements Runnable {
 

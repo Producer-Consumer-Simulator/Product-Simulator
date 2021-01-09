@@ -1,4 +1,4 @@
-package producerConsumerApp.GUI.model;
+package app.GUI.model;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

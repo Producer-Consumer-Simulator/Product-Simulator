@@ -1,6 +1,6 @@
-package producerConsumerApp;
+package app;
 
-import producerConsumerApp.GUI.mainGUI;
+import app.GUI.mainGUI;
 
 public class AppMain {
 

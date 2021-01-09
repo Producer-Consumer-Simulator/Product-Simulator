@@ -1,7 +1,11 @@
-package producerConsumerApp.GUI;
+package app.GUI;
 
 import java.util.ArrayList;
 
+import app.GUI.model.DecoShape;
+import app.GUI.model.InfoHolder;
+import app.GUI.model.myshapes;
+import app.models.Product;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -9,10 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import producerConsumerApp.GUI.model.DecoShape;
-import producerConsumerApp.GUI.model.InfoHolder;
-import producerConsumerApp.GUI.model.myshapes;
-import producerConsumerApp.models.Product;
 
 public class mainGUI extends Application implements Runnable {
 

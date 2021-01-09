@@ -1,4 +1,4 @@
-package producerConsumerApp.services.SnapShot;
+package app.services.SnapShot;
 
 import java.util.ArrayList;
 

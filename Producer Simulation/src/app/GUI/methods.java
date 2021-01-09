@@ -1,7 +1,13 @@
-package producerConsumerApp.GUI;
+package app.GUI;
 
 import java.util.ArrayList;
 
+import app.GUI.model.DecoShape;
+import app.GUI.model.InfoHolder;
+import app.models.Consumer;
+import app.models.Product;
+import app.models.Unit;
+import app.services.UnitBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
@@ -14,12 +20,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
 import javafx.util.Callback;
-import producerConsumerApp.GUI.model.DecoShape;
-import producerConsumerApp.GUI.model.InfoHolder;
-import producerConsumerApp.models.Consumer;
-import producerConsumerApp.models.Product;
-import producerConsumerApp.models.Unit;
-import producerConsumerApp.services.UnitBuilder;
 
 public class methods {
 	
