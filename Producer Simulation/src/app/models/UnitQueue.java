@@ -14,7 +14,7 @@ public class UnitQueue implements Runnable {
 	public boolean lastQueue = false;
 	
 	private Object Lock = new Object();
-	private Object ThreadLock = new Object();
+	//private Object ThreadLock = new Object();
 	// private ArrayList<Thread> availableMachinesThreads;
 	// private ArrayList<Machine> notAvailableMachines;
 
