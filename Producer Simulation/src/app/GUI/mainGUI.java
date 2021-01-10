@@ -88,6 +88,7 @@ public class mainGUI extends Application implements Runnable {
 		});
 		shapes.addproduct.setOnMouseClicked(e -> {
 			String text = shapes.textField.getText();
+			shapes.textField.setText("");
 			if (!text.equals(textNull)) {
 				Product p = new Product(text);
 				info.productInput.add(p);

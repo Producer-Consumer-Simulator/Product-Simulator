@@ -68,7 +68,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return /*"Product [fxcolor=" + this.getColor() + */", name=" + name + "]";
+		return "Product [fxcolor=" + fxcolor + ", name=" + name + "]";
 	}
 
 	public void setFxcolor(Color fxcolor) {
