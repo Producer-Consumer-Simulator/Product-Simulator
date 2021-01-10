@@ -14,6 +14,9 @@ public class Machine implements Runnable {
 	private Product product;
 	private DecoShape guiShape;
 	private boolean avalible = true;
+	
+	private Object Lock;
+	private Object ThreadLock ;
 
 	public Machine(DecoShape shape, String Name) {
 		this.Name = Name;
@@ -87,29 +90,24 @@ public class Machine implements Runnable {
 	@Override
 	public void run() {
 		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName());
-		 long startTime = System.currentTimeMillis();
+		//long startTime = System.currentTimeMillis();
 		synchronized (this) {
 			try {
 				this.guiShape.setColor(this.product.fxcolor);
 				// System.out.println(this.product.getFirstName()+" "+this.product.getColor());
 				// this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
-				  long t = this.time-(System.currentTimeMillis()-startTime);
+				  /*long t = this.time-(System.currentTimeMillis()-startTime);
 				  while (t>0) {
 					  wait(1000);
 					  String ti = Long.toString(t/1000);
 					  System.out.println(ti);
 					  this.guiShape.setText(ti);
 					  t =this.time-(System.currentTimeMillis()-startTime); 
-				  }
-				  //String ti = Long.toString(this.time/1000);
-				 // System.out.println(ti);
-				//wait(this.time);
+				  }*/
+				wait(this.time);
 				// System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
-				  synchronized (Unit.getInstance().FullLock) {
-					  while (this.nextQueue.isFullProductQueue()) {Unit.getInstance().FullLock.wait();}
-					  this.nextQueue.getProductsQueue().add(this.product);
-				  }
-				
+				while (this.nextQueue.isFullProductQueue()) {}
+				this.nextQueue.getProductsQueue().add(this.product);
 				// this.guiShape.setText(" ");
 				System.out.println("Machine " + this.guiShape.getTextString() + " ends " + this.product.getFirstName());
 				this.guiShape.setColor(Color.GRAY);
@@ -117,24 +115,39 @@ public class Machine implements Runnable {
 				synchronized (nextQueue) {
 					new Thread(this.nextQueue).start();
 				}
-				notify();
-				synchronized (Unit.getInstance().Lock) {
-					Unit.getInstance().Lock.notify();
+				if (Lock!=null) {
+					synchronized (Lock) {
+						this.Lock.notifyAll();
+					}
 				}
+				if (ThreadLock!=null) {
+					synchronized (ThreadLock) {
+						this.ThreadLock.notifyAll();
+					}
+				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 
 	}
 
+	
 	public boolean isAvalible() {
 		return avalible;
 	}
 
 	public void setAvailable(boolean b) {
 		this.avalible = b;
+	}
+
+	public void setLock(Object lock) {
+		Lock = lock;
+	}
+
+	public void setThreadLock(Object threadLock) {
+		ThreadLock = threadLock;
 	}
 
 	/*

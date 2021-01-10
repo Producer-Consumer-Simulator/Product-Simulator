@@ -4,13 +4,14 @@ import app.GUI.model.DecoShape;
 import app.models.Machine;
 import app.models.Unit;
 import app.models.UnitQueue;
+import app.services.SnapShot.Originator;
 
 public class UnitBuilder {
 	
 	private Unit OurUnit ;
 	
 	public UnitBuilder() {
-		this.OurUnit = Unit.getInstance();
+		this.OurUnit = Originator.getInstance().getState();
 	}
 	
 	public UnitBuilder(Unit unit) {

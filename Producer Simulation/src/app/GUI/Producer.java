@@ -2,6 +2,7 @@ package app.GUI;
 
 import app.models.Product;
 import app.models.Unit;
+import app.services.SnapShot.Originator;
 
 public class Producer implements Runnable {
 	private String text;
@@ -23,7 +24,7 @@ public class Producer implements Runnable {
 	}
 
 	public synchronized void add(Product s) throws InterruptedException {
-		Unit c = Unit.getInstance();
+		Unit c = Originator.getInstance().getState();
 		while (c.getFirstQueue().isFullProductQueue()) {
 			wait();
 		}

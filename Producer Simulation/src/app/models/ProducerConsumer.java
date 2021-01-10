@@ -1,7 +1,9 @@
 package app.models;
 
+import app.services.SnapShot.Originator;
+
 public class ProducerConsumer {
-	Unit u = Unit.getInstance();
+	Unit u = Originator.getInstance().getState();
 	private static ProducerConsumer instance;
 	private ProducerConsumer() {
 		

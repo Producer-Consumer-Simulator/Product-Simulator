@@ -3,25 +3,24 @@ package app.models;
 import java.util.ArrayList;
 
 public class Unit {
-	private static Unit instance;
+	//private static Unit instance;
 	private ArrayList<UnitQueue> FactoryQueues;
 	private ArrayList<Machine> FactoryMachines;
 	private ArrayList<Product> FinishedProducts;
-	
-	public Object Lock = new Object();
-	public Object FullLock = new Object();
 
-	private Unit() {
+	
+
+	public Unit() {
 		FactoryQueues = new ArrayList<UnitQueue>();
 		FactoryMachines = new ArrayList<Machine>();
 		setFinishedProducts(new ArrayList<Product>());
 	}
 
-	public static Unit getInstance() {
+	/*public static Unit getInstance() {
 		if (instance == null)
 			instance = new Unit();
 		return instance;
-	}
+	}*/
 
 	public ArrayList<UnitQueue> getfactorqueue() {
 		return FactoryQueues;
@@ -38,7 +37,7 @@ public class Unit {
 	public void addQueue(UnitQueue q) {
 		FactoryQueues.add(q);
 	}
-	
+
 	public UnitQueue getFirstQueue() {
 		return FactoryQueues.get(0);
 	}
@@ -95,14 +94,12 @@ public class Unit {
 	 * b.CreateMachine(shape, PrevQueueName, NextQueueName); }
 	 */
 
-	/*public void Simulate() {
-		// get 1st queue
-		// simulate
-		if (this.FactoryQueues.get(0) != null) {
-			// this.FactoryQueues.get(0).Simulate();
-			new Thread(this.FactoryQueues.get(0)).start();
-		}
-	}*/
+	/*
+	 * public void Simulate() { // get 1st queue // simulate if
+	 * (this.FactoryQueues.get(0) != null) { //
+	 * this.FactoryQueues.get(0).Simulate(); new
+	 * Thread(this.FactoryQueues.get(0)).start(); } }
+	 */
 
 	@Override
 	public String toString() {

@@ -8,6 +8,7 @@ import app.models.ProducerConsumer;
 import app.models.Product;
 import app.models.Unit;
 import app.services.UnitBuilder;
+import app.services.SnapShot.Originator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
@@ -193,6 +194,7 @@ public class methods {
 		UnitBuilder ub = new UnitBuilder();
 		treetoUnitBuilder(info.root, ub);
 		Unit u = ub.toUnit();
+		
 		Product p1 = new Product("p1"), p2 = new Product("p2"),
 		p3 = new Product("p3"), p4 = new Product("p4"),
 		p5 = new Product("p5"), p6 = new Product("p6"),
@@ -218,6 +220,7 @@ public class methods {
 		u.addProduct(p13); u.addProduct(p14); u.addProduct(p15);
 		u.addProduct(p16); */
 		System.out.println(u);
+		Originator.getInstance().setState(u);
 		/*Thread t = new Thread (new ProducerConsumer());
 		t.start(); */
 		ProducerConsumer pc = ProducerConsumer.getInstance();
