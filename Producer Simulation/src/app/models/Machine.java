@@ -93,7 +93,7 @@ public class Machine implements Runnable {
 		//long startTime = System.currentTimeMillis();
 		synchronized (this) {
 			try {
-				this.guiShape.setColor(this.product.fxcolor);
+				this.guiShape.setColor(this.product.getFxcolor());
 				// System.out.println(this.product.getFirstName()+" "+this.product.getColor());
 				// this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
 				  /*long t = this.time-(System.currentTimeMillis()-startTime);

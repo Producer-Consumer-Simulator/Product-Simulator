@@ -1,31 +1,49 @@
 package app.models;
 
+//import java.awt.Color;
+import java.util.Random;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.paint.Color;
 
 public class Product {
 
 	// private String Name,Color;
-	public Color fxcolor;
-	private static String[] color1 = { "#F0F8FF", "FAEBD7", "#00FFFF", "#DC143C", "#FF7F50", "#7FFF00", "#0000FF ",
+	private Color fxcolor ;
+	/*private static String[] color1 = { "#F0F8FF", "FAEBD7", "#00FFFF", "#DC143C", "#FF7F50", "#7FFF00", "#0000FF ",
 			"#8B008B", "#FF8C00", "#FF1493", "#00BFFF", "#B22222", "#FF00FF", "#FFD700", "#FF69B4", "#CD5C5C",
-			"#4B0082", "#800000" };
+			"#4B0082", "#800000" };*/
 	private SimpleStringProperty name;
-	private String color;
+	//private String color;
 
 	public String getColor() {
-		return color;
+		StringBuilder color = new StringBuilder();
+		color.append('#');
+		String s1 = Integer.toHexString((int) Math.round(fxcolor.getRed()*255));
+		String s1upper=s1.toUpperCase();
+		color.append(s1upper);
+		String s2 = Integer.toHexString((int) Math.round(fxcolor.getGreen()*255));
+		String s2upper=s2.toUpperCase();
+		color.append(s2upper);
+		String s3 = Integer.toHexString((int) Math.round(fxcolor.getBlue()*255));
+		String s3upper=s3.toUpperCase();
+		color.append(s3upper);
+		return color.toString();
 	}
 
-	public void setColor(String color) {
+	/*public void setColor(String color) {
 		this.color = color;
-	}
+	}*/
 
 	public Product(String fName) {
 		this.name = new SimpleStringProperty(fName);
-		int n = (int) (Math.random() * (17 - 0 + 1) + 0);
-		this.color = color1[n];
-
+		//int n = (int) (Math.random() * (17 - 0 + 1) + 0);
+		//this.color = color1[n];
+		Random r = new Random();
+		int red =  r.nextInt(255);
+		int green =  r.nextInt(255);
+		int blue =  r.nextInt(255);
+		this.setFxcolor(Color.rgb(red, green, blue));
 	}
 
 	public String getFirstName() {
@@ -36,9 +54,22 @@ public class Product {
 		name.set(fName);
 	}
 
+	/*@Override
+	public String toString() {
+		return "Product [name=" + name + ", color=" + fxcolor.toString() + "]";
+	}*/
+
+	public Color getFxcolor() {
+		return fxcolor;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [name=" + name + ", color=" + color + "]";
+		return "Product [fxcolor=" + this.getColor() + ", name=" + name + "]";
+	}
+
+	public void setFxcolor(Color fxcolor) {
+		this.fxcolor = fxcolor;
 	}
 
 	/*

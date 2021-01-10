@@ -89,12 +89,13 @@ public class mainGUI extends Application implements Runnable {
 		shapes.addproduct.setOnMouseClicked(e -> {
 			String text = shapes.textField.getText();
 			if (!text.equals(textNull)) {
-				info.productInput.add(new Product(text));
+				Product p = new Product(text);
+				info.productInput.add(p);
 				method.fillTable(info.productInput);
 				/*Thread t = new Thread(new Producer(text));
 				t.start();*/
 				ProducerConsumer pc = ProducerConsumer.getInstance();
-				pc.produce(new Product(text));
+				pc.produce(p);
 			}
 		});
 
