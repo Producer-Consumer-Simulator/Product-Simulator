@@ -211,18 +211,31 @@ public class methods {
 		p11.fxcolor = Color.PINK; p12.fxcolor = Color.CYAN;
 		p13.fxcolor = Color.YELLOW; p14.fxcolor = Color.BLUE;
 		p15.fxcolor = Color.PINK; p16.fxcolor = Color.CYAN;*/
-		
-		u.addProduct(p1); u.addProduct(p2); u.addProduct(p3);
-		u.addProduct(p4); u.addProduct(p5); u.addProduct(p6);
-		u.addProduct(p7); u.addProduct(p8); u.addProduct(p9);
-		u.addProduct(p10);/* u.addProduct(p11); u.addProduct(p12);
+		ProducerConsumer pc = ProducerConsumer.getInstance();
+		/*pc.produce(p1); pc.produce(p2); pc.produce(p3);
+		pc.produce(p4); pc.produce(p5); pc.produce(p6);
+		pc.produce(p7); pc.produce(p8); pc.produce(p9);
+		pc.produce(p10); u.addProduct(p11); u.addProduct(p12);
 		u.addProduct(p13); u.addProduct(p14); u.addProduct(p15);
 		u.addProduct(p16); */
 		System.out.println(u);
 		Originator.getInstance().setState(u);
 		/*Thread t = new Thread (new ProducerConsumer());
 		t.start(); */
-		ProducerConsumer pc = ProducerConsumer.getInstance();
+		//ProducerConsumer pc = ProducerConsumer.getInstance();
+		
+		Thread t2 = new Thread(new Runnable() { 
+            @Override
+            public void run() 
+            { 
+            	pc.produce(p1); pc.produce(p2); pc.produce(p3);
+        		pc.produce(p4); pc.produce(p5); pc.produce(p6);
+        		pc.produce(p7); pc.produce(p8); pc.produce(p9);
+        		pc.produce(p10); 
+            } 
+        });
+		t2.start();
+		
 		
 		Thread t1 = new Thread(new Runnable() { 
             @Override
