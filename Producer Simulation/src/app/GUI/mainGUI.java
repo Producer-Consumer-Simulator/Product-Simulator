@@ -95,7 +95,14 @@ public class mainGUI extends Application implements Runnable {
 				/*Thread t = new Thread(new Producer(text));
 				t.start();*/
 				ProducerConsumer pc = ProducerConsumer.getInstance();
-				pc.produce(p);
+				Thread t1 = new Thread(new Runnable() { 
+		            @Override
+		            public void run() 
+		            { 
+		            	pc.produce(p);
+		            } 
+		        });
+				t1.start();				
 			}
 		});
 

@@ -9,5 +9,14 @@ public class AppMain {
 
 		new Thread(new mainGUI()).start();
 		//new Thread(new productGui()).start();
+		/*ProducerConsumer pc = ProducerConsumer.getInstance();
+		Thread t1 = new Thread(new Runnable() { 
+            @Override
+            public void run() 
+            { 
+            	pc.Consume(); 
+            } 
+        });
+		t1.start();*/
 	}
 }
