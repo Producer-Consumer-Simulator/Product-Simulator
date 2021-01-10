@@ -177,11 +177,13 @@ public class UnitQueue implements Runnable {
 			synchronized (productsQueue) {
 				Product product = this.productsQueue.poll();
 				if (product != null) {
-					synchronized (ThreadLock) {
+					synchronized (Originator.getInstance().Lock) {
 						Machine available = getAvailableMachine();
 						while (available == null) {
 							try {
-								this.ThreadLock.wait();
+								System.out.println("thread queue "+this.Name+"wait");
+								Originator.getInstance().Lock.wait();
+								System.out.println("thread queue "+this.Name+"NOt wait");
 								available = getAvailableMachine();
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
@@ -189,7 +191,7 @@ public class UnitQueue implements Runnable {
 							}
 						}
 						available.setProduct(product);
-						available.setThreadLock(ThreadLock);
+						available.setThreadLock(Originator.getInstance().Lock);
 						available.setAvailable(false);
 						// synchronized (available.getProduct()) {
 						new Thread(available).start();

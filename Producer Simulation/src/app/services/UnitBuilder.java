@@ -29,11 +29,12 @@ public class UnitBuilder {
 			addQueue(prev);
 		}
 		prev.addAvailableMachine(m);
+		prev.lastQueue = false;
 		UnitQueue next = this.OurUnit.getQueue(NextQueueName);
 		if (next == null) {
 			next = new UnitQueue(NextQueueName);
 			next.lastQueue = true;
-			prev.lastQueue = false;
+			//prev.lastQueue = false;
 			addQueue(next);
 		}
 		m.setNextQueue(next);

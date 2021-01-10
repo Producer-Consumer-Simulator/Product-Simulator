@@ -20,17 +20,20 @@ public class Product {
 		StringBuilder color = new StringBuilder();
 		color.append('#');
 		String s1 = Integer.toHexString((int) Math.round(fxcolor.getRed()*255));
-		String s1upper=s1.toUpperCase();
-		color.append(s1upper);
-		String s2 = Integer.toHexString((int) Math.round(fxcolor.getGreen()*255));
-		String s2upper=s2.toUpperCase();
-		color.append(s2upper);
-		String s3 = Integer.toHexString((int) Math.round(fxcolor.getBlue()*255));
-		String s3upper=s3.toUpperCase();
-		color.append(s3upper);
+		color.append(handleColorString(s1));
+		s1 = Integer.toHexString((int) Math.round(fxcolor.getGreen()*255));
+		color.append(handleColorString(s1));
+		s1 = Integer.toHexString((int) Math.round(fxcolor.getBlue()*255));
+		color.append(handleColorString(s1));
 		return color.toString();
 	}
 
+	private String handleColorString(String s) {
+		if (s.length()==1) {
+			s="0"+s;
+		}
+		return s.toUpperCase();
+	}
 	/*public void setColor(String color) {
 		this.color = color;
 	}*/
@@ -65,7 +68,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [fxcolor=" + this.getColor() + ", name=" + name + "]";
+		return /*"Product [fxcolor=" + this.getColor() + */", name=" + name + "]";
 	}
 
 	public void setFxcolor(Color fxcolor) {

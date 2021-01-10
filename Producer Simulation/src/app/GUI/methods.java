@@ -240,7 +240,7 @@ public class methods {
 		else if(root.getNext().size() == 0) return;
 		else {
 			for(int i=0; i<root.getNext().size();i++) {
-				if(root.getType() == 'M'/* && !root.visited*/) {
+				if(root.getType() == 'M' && !root.visited) {
 					root.visited = true;
 					for(int j = 0 ; j < root.getPrevious().size() ; j++) {
 					ub.CreateMachine(root,root.getTextString(),root.getPrevious().get(j).getTextString(), root.getNext().get(0).getTextString());}

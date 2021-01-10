@@ -91,22 +91,40 @@ public class Machine implements Runnable {
 	public void run() {
 		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName());
 		//long startTime = System.currentTimeMillis();
-		synchronized (this) {
+		if(this.Lock != null) {
+			System.out.println("first queue lock");
+			runinstead(this/*.Lock*/);
+		}
+		else if(this.ThreadLock != null) {
+			System.out.println("thread queue lock");
+			runinstead(this.ThreadLock);
+		}
+		else {
+			System.out.println("thththth queue lock");
+			runinstead(this);
+		}
+		
+
+	}
+	
+	private void runinstead (Object Lock) {
+		//long startTime = System.currentTimeMillis();
+		synchronized (Lock) {
 			try {
 				this.guiShape.setColor(this.product.getFxcolor());
 				// System.out.println(this.product.getFirstName()+" "+this.product.getColor());
 				// this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
 				  /*long t = this.time-(System.currentTimeMillis()-startTime);
 				  while (t>0) {
-					  wait(1000);
+					  Lock.wait(1000);
 					  String ti = Long.toString(t/1000);
 					  System.out.println(ti);
 					  this.guiShape.setText(ti);
 					  t =this.time-(System.currentTimeMillis()-startTime); 
 				  }*/
-				wait(this.time);
+				Lock.wait(this.time);
 				// System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
-				while (this.nextQueue.isFullProductQueue()) {}
+				while (this.nextQueue.isFullProductQueue()) {Lock.wait(1000);}
 				this.nextQueue.getProductsQueue().add(this.product);
 				// this.guiShape.setText(" ");
 				System.out.println("Machine " + this.guiShape.getTextString() + " ends " + this.product.getFirstName());
@@ -115,22 +133,22 @@ public class Machine implements Runnable {
 				synchronized (nextQueue) {
 					new Thread(this.nextQueue).start();
 				}
-				if (Lock!=null) {
-					synchronized (Lock) {
+				Lock.notifyAll();
+				if (this.Lock!=null) {
+					synchronized (this.Lock) {
 						this.Lock.notifyAll();
 					}
 				}
-				if (ThreadLock!=null) {
+				/*if (ThreadLock!=null) {
 					synchronized (ThreadLock) {
 						this.ThreadLock.notifyAll();
 					}
-				}
+				}*/
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	
