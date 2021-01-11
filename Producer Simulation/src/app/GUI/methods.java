@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import app.GUI.model.DecoShape;
 import app.GUI.model.InfoHolder;
-import app.models.ProducerConsumer;
+import app.services.*;
 import app.models.Product;
 import app.models.Unit;
 import app.services.UnitBuilder;

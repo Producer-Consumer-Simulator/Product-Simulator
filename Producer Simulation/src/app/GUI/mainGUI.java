@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import app.GUI.model.DecoShape;
 import app.GUI.model.InfoHolder;
 import app.GUI.model.myshapes;
-import app.models.ProducerConsumer;
+import app.services.*;
 import app.models.Product;
 import javafx.application.Application;
 import javafx.scene.Group;
