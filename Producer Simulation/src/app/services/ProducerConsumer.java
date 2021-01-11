@@ -27,7 +27,7 @@ public class ProducerConsumer {
 				}
 			}
 			u.addProduct(p);
-			System.out.println("/n/ni'm here produce");
+			//System.out.println("i'm here produce");
 			notify();
 		}
 	}
