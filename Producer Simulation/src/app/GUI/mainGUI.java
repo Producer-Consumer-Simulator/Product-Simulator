@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class mainGUI extends Application implements Runnable {
 
-	private String[] args;
+	private static String[] args;
 	//private boolean check = false;
 	public ArrayList<String> queue = new ArrayList<String>();
 	private boolean runcheck =false;
@@ -124,6 +124,11 @@ public class mainGUI extends Application implements Runnable {
 	}
 
 	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	public static void start() {
+		// TODO Auto-generated method stub
 		launch(args);
 	}
 
