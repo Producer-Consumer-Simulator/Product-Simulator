@@ -194,11 +194,11 @@ public class methods {
 		treetoUnitBuilder(info.root, ub);
 		Unit u = ub.toUnit();
 		
-		Product p1 = new Product("p1"), p2 = new Product("p2"),
+		/*Product p1 = new Product("p1"), p2 = new Product("p2"),
 		p3 = new Product("p3"), p4 = new Product("p4"),
 		p5 = new Product("p5"), p6 = new Product("p6"),
 		p7 = new Product("p7"), p8 = new Product("p8"),
-		p9 = new Product("p9"), p10 = new Product("p10");
+		p9 = new Product("p9"), p10 = new Product("p10");*/
 		/*p11 = new Product("p11"), p12 = new Product("p12"),
 		p13 = new Product("p13"), p14 = new Product("p14"),
 		p15 = new Product("p15"), p16 = new Product("p16");*/
@@ -228,13 +228,15 @@ public class methods {
             @Override
             public void run() 
             { 
-            	pc.produce(p1); pc.produce(p2); pc.produce(p3);
+            	/*pc.produce(p1); pc.produce(p2); pc.produce(p3);
         		pc.produce(p4); pc.produce(p5); pc.produce(p6);
         		pc.produce(p7); pc.produce(p8); pc.produce(p9);
-        		pc.produce(p10); 
+        		pc.produce(p10); */
+            	for(int i=0 ; i<info.productInput.size();i++) {
+            		pc.produce(info.productInput.get(i));
+            	}
             } 
         });
-		t2.start();
 		
 		
 		Thread t1 = new Thread(new Runnable() { 
@@ -245,6 +247,8 @@ public class methods {
             } 
         });
 		t1.start();
+		t2.start();
+
 		//new Thread(new productGui()).start();
 	}
 	

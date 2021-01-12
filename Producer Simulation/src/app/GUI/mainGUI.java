@@ -20,6 +20,7 @@ public class mainGUI extends Application implements Runnable {
 	private String[] args;
 	//private boolean check = false;
 	public ArrayList<String> queue = new ArrayList<String>();
+	private boolean runcheck =false;
 	String textNull = "\n";
 
 	@Override
@@ -64,6 +65,7 @@ public class mainGUI extends Application implements Runnable {
 			drawingArea.getChildren().add(t.getNode());
 		});
 		shapes.run.setOnAction(e -> {
+			runcheck=true;
 			methods.Simulate();
 		});
 		shapes.DrageButton.setOnAction(e -> {
@@ -95,15 +97,17 @@ public class mainGUI extends Application implements Runnable {
 				method.fillTable(info.productInput);
 				/*Thread t = new Thread(new Producer(text));
 				t.start();*/
-				ProducerConsumer pc = ProducerConsumer.getInstance();
-				Thread t1 = new Thread(new Runnable() { 
-		            @Override
-		            public void run() 
-		            { 
-		            	pc.produce(p);
-		            } 
-		        });
-				t1.start();				
+				if(runcheck) {
+					ProducerConsumer pc = ProducerConsumer.getInstance();
+					Thread t1 = new Thread(new Runnable() { 
+			            @Override
+			            public void run() 
+			            { 
+			            	pc.produce(p);
+			            } 
+			        });
+					t1.start();		
+				}		
 			}
 		});
 
