@@ -22,12 +22,10 @@ public class ProducerConsumer {
 				try {
 					wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			u.addProduct(p);
-			//System.out.println("i'm here produce");
 			notify();
 		}
 	}
@@ -42,11 +40,9 @@ public class ProducerConsumer {
 						System.out.println("Consume is Wait");
 						wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-				//u.Simulate();
 				u.getFirstQueue().Simulate(u.getFirstQueue().getProductsQueue().poll());
 				notify();
 			}

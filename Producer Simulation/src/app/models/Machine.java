@@ -7,16 +7,15 @@ import javafx.scene.paint.Color;
 
 public class Machine implements Runnable {
 
-	
 	private UnitQueue nextQueue;
 	private long time;
 	private String Name;
 	private Product product;
 	private DecoShape guiShape;
 	private boolean avalible = true;
-	
+
 	private Object Lock;
-	private Object ThreadLock ;
+	private Object ThreadLock;
 
 	public Machine(DecoShape shape, String Name) {
 		this.Name = Name;
@@ -24,7 +23,6 @@ public class Machine implements Runnable {
 		Random r = new Random();
 		this.time = 5000 + r.nextInt(30000);
 	}
-
 
 	public UnitQueue getNextQueue() {
 		return nextQueue;
@@ -57,66 +55,73 @@ public class Machine implements Runnable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
-	public void StartMachine (Product product, Object Lock) {
+
+	public void StartMachine(Product product, Object Lock) {
 		this.product = product;
 		this.ThreadLock = Lock;
 		this.avalible = false;
 		new Thread(this).start();
 	}
-	
-	
+
 	@Override
 	public void run() {
-		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName() + " time: " +this.time);
-		if(this.Lock != null) {
-			System.out.println("first queue lock");
-			runinstead(this/*.Lock*/);
-		}
-		else if(this.ThreadLock != null) {
-			System.out.println("thread queue lock");
-			runinstead(this.ThreadLock);
+		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName()
+				+ " time: " + this.time);
+		if (this.Lock != null) {
+			runInstead(this/* .Lock */);
+		} else if (this.ThreadLock != null) {
+			runInstead(this.ThreadLock);
 		}
 	}
-	
-	private void runinstead (Object Lock) {
+
+	private void runInstead(Object Lock) {
 		long startTime = System.currentTimeMillis();
 		synchronized (Lock) {
 			try {
 				this.guiShape.setColor(this.product.getFxcolor());
-				  long t = this.time-(System.currentTimeMillis()-startTime);
-				  while (t>0) {
-					  String ti = Long.toString(t/1000);
-					  System.out.println(ti);
-					  this.guiShape.setText(ti);
-					  Lock.wait(1000);
-					  t =this.time-(System.currentTimeMillis()-startTime); 
-				  }
-				while (this.nextQueue.isFullProductQueue()) {Lock.wait(1000);}
+				showRemainingTime(startTime, Lock);
+				while (this.nextQueue.isFullProductQueue()) {
+					Lock.wait(1000);
+				}
 				this.guiShape.setText(this.Name);
 				System.out.println("Machine " + this.guiShape.getTextString() + " ends " + this.product.getFirstName());
 				this.guiShape.setColor(Color.GRAY);
 				this.avalible = true;
 				this.nextQueue.StartQueue(this.product);
-				if (this.Lock!=null) {
+				if (this.Lock != null) {
 					synchronized (this.Lock) {
 						this.Lock.notify();
 					}
 				}
-				if (ThreadLock!=null) {
+				if (ThreadLock != null) {
 					synchronized (ThreadLock) {
 						this.ThreadLock.notifyAll();
 					}
 				}
-				
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	
+	private void showRemainingTime(long StartTime, Object Lock) {
+		synchronized (Lock) {
+			long t = this.time - (System.currentTimeMillis() - StartTime);
+			while (t > 0) {
+				String ti = Long.toString(t / 1000);
+				System.out.println(ti);
+				this.guiShape.setText(ti);
+				try {
+					Lock.wait(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				t = this.time - (System.currentTimeMillis() - StartTime);
+			}
+		}
+	}
+
 	public boolean isAvalible() {
 		return avalible;
 	}
@@ -132,11 +137,5 @@ public class Machine implements Runnable {
 	public void setThreadLock(Object threadLock) {
 		ThreadLock = threadLock;
 	}
-
-	/*
-	 * @Override public String toString() { return "Machine [nextQueue=" + nextQueue
-	 * + ", time=" + time + ", product=" + product + ", guiShape=" + guiShape +
-	 * ", avalible=" + avalible + "]"; }
-	 */
 
 }

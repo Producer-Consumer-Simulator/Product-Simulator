@@ -34,7 +34,6 @@ public class UnitBuilder {
 		if (next == null) {
 			next = new UnitQueue(NextQueueName);
 			next.lastQueue = true;
-			//prev.lastQueue = false;
 			addQueue(next);
 		}
 		m.setNextQueue(next);

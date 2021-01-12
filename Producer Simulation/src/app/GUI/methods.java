@@ -194,51 +194,17 @@ public class methods {
 		treetoUnitBuilder(info.root, ub);
 		Unit u = ub.toUnit();
 		Originator.getInstance().setState(u);
-		/*Product p1 = new Product("p1"), p2 = new Product("p2"),
-		p3 = new Product("p3"), p4 = new Product("p4"),
-		p5 = new Product("p5"), p6 = new Product("p6"),
-		p7 = new Product("p7"), p8 = new Product("p8"),
-		p9 = new Product("p9"), p10 = new Product("p10");*/
-		/*p11 = new Product("p11"), p12 = new Product("p12"),
-		p13 = new Product("p13"), p14 = new Product("p14"),
-		p15 = new Product("p15"), p16 = new Product("p16");*/
-				
-	/*	p1.fxcolor = Color.RED; p2.fxcolor = Color.GREEN;
-		p3.fxcolor = Color.YELLOW; p4.fxcolor = Color.BLUE;
-		p5.fxcolor = Color.PINK; p6.fxcolor = Color.CYAN;
-		p7.fxcolor = Color.RED; p8.fxcolor = Color.GREEN;
-		p9.fxcolor = Color.YELLOW; p10.fxcolor = Color.BLUE;
-		p11.fxcolor = Color.PINK; p12.fxcolor = Color.CYAN;
-		p13.fxcolor = Color.YELLOW; p14.fxcolor = Color.BLUE;
-		p15.fxcolor = Color.PINK; p16.fxcolor = Color.CYAN;*/
 		ProducerConsumer pc = ProducerConsumer.getInstance();
-		/*pc.produce(p1); pc.produce(p2); pc.produce(p3);
-		pc.produce(p4); pc.produce(p5); pc.produce(p6);
-		pc.produce(p7); pc.produce(p8); pc.produce(p9);
-		pc.produce(p10); u.addProduct(p11); u.addProduct(p12);
-		u.addProduct(p13); u.addProduct(p14); u.addProduct(p15);
-		u.addProduct(p16); */
 		System.out.println(u);
-		
-		/*Thread t = new Thread (new ProducerConsumer());
-		t.start(); */
-		//ProducerConsumer pc = ProducerConsumer.getInstance();
-		
 		Thread t2 = new Thread(new Runnable() { 
             @Override
             public void run() 
             { 
-            	/*pc.produce(p1); pc.produce(p2); pc.produce(p3);
-        		pc.produce(p4); pc.produce(p5); pc.produce(p6);
-        		pc.produce(p7); pc.produce(p8); pc.produce(p9);
-        		pc.produce(p10); */
             	for(int i=0 ; i<info.productInput.size();i++) {
             		pc.produce(info.productInput.get(i));
             	}
             } 
         });
-		
-		
 		Thread t1 = new Thread(new Runnable() { 
             @Override
             public void run() 
@@ -248,8 +214,6 @@ public class methods {
         });
 		t1.start();
 		t2.start();
-
-		//new Thread(new productGui()).start();
 	}
 	
 	private static void treetoUnitBuilder(DecoShape root, UnitBuilder ub) {

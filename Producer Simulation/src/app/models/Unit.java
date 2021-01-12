@@ -3,7 +3,6 @@ package app.models;
 import java.util.ArrayList;
 
 public class Unit {
-	//private static Unit instance;
 	private ArrayList<UnitQueue> FactoryQueues;
 	private ArrayList<Machine> FactoryMachines;
 	private ArrayList<Product> FinishedProducts;
@@ -15,12 +14,6 @@ public class Unit {
 		FactoryMachines = new ArrayList<Machine>();
 		setFinishedProducts(new ArrayList<Product>());
 	}
-
-	/*public static Unit getInstance() {
-		if (instance == null)
-			instance = new Unit();
-		return instance;
-	}*/
 
 	public ArrayList<UnitQueue> getfactorqueue() {
 		return FactoryQueues;
@@ -87,19 +80,6 @@ public class Unit {
 		}
 		return false;
 	}
-
-	/*
-	 * public void CreateMachine(DecoShape shape, String PrevQueueName ,String
-	 * NextQueueName) { UnitBuilder b = new UnitBuilder(this);
-	 * b.CreateMachine(shape, PrevQueueName, NextQueueName); }
-	 */
-
-	/*
-	 * public void Simulate() { // get 1st queue // simulate if
-	 * (this.FactoryQueues.get(0) != null) { //
-	 * this.FactoryQueues.get(0).Simulate(); new
-	 * Thread(this.FactoryQueues.get(0)).start(); } }
-	 */
 
 	@Override
 	public String toString() {
