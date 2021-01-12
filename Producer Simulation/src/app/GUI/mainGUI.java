@@ -15,10 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class mainGUI extends Application implements Runnable {
+public class mainGUI extends Application {
 
 	private static String[] args;
-	//private boolean check = false;
 	public ArrayList<String> queue = new ArrayList<String>();
 	private boolean runcheck =false;
 	String textNull = "\n";
@@ -95,8 +94,6 @@ public class mainGUI extends Application implements Runnable {
 				Product p = new Product(text);
 				info.productInput.add(p);
 				method.fillTable(info.productInput);
-				/*Thread t = new Thread(new Producer(text));
-				t.start();*/
 				if(runcheck) {
 					ProducerConsumer pc = ProducerConsumer.getInstance();
 					Thread t1 = new Thread(new Runnable() { 
@@ -123,19 +120,9 @@ public class mainGUI extends Application implements Runnable {
 		window.show();
 	}
 
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
 	public static void start() {
-		// TODO Auto-generated method stub
 		launch(args);
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		launch(args);
-	}
 
 }
