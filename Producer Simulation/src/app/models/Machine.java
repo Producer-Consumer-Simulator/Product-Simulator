@@ -139,11 +139,11 @@ public class Machine implements Runnable {
 						this.Lock.notifyAll();
 					}
 				}
-				/*if (ThreadLock!=null) {
+				if (ThreadLock!=null) {
 					synchronized (ThreadLock) {
 						this.ThreadLock.notifyAll();
 					}
-				}*/
+				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();

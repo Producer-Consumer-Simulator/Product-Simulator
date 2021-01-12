@@ -167,6 +167,7 @@ public class UnitQueue implements Runnable {
 	@Override
 	public void run() {
 		while (!this.productsQueue.isEmpty()/* && !this.lastQueue */) {
+			synchronized (productsQueue) {
 			if (this.lastQueue) {
 				for (int i = 0; i < this.productsQueue.size(); i++) {
 					Originator.getInstance().getState().getFinishedProducts().add(this.productsQueue.poll());
@@ -174,7 +175,7 @@ public class UnitQueue implements Runnable {
 				System.out.println(Originator.getInstance().getState().getFinishedProducts());
 			}
 			else {
-				synchronized (productsQueue) {
+				//synchronized (productsQueue) {
 					Product product = this.productsQueue.poll();
 					if (product != null) {
 						synchronized (Originator.getInstance().Lock) {
