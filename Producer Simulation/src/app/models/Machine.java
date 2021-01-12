@@ -3,6 +3,7 @@ package app.models;
 import java.util.Random;
 
 import app.GUI.model.DecoShape;
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 
 public class Machine implements Runnable {
@@ -107,17 +108,19 @@ public class Machine implements Runnable {
 
 	private void showRemainingTime(long StartTime, Object Lock) {
 		synchronized (Lock) {
-			long t = this.time - (System.currentTimeMillis() - StartTime);
-			while (t > 0) {
-				String ti = Long.toString(t / 1000);
-				System.out.println(ti);
-				this.guiShape.setText(ti);
-				try {
+			try {
+				long t = this.time - (System.currentTimeMillis() - StartTime);
+				while (t > 0) {
+					String ti = Long.toString(t / 1000);
+					//System.out.println(ti);
+					Platform.runLater(() -> {
+						this.guiShape.setText(ti);
+					});
 					Lock.wait(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+					t = this.time - (System.currentTimeMillis() - StartTime);
 				}
-				t = this.time - (System.currentTimeMillis() - StartTime);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}
