@@ -22,7 +22,7 @@ public class Machine implements Runnable {
 		this.Name = Name;
 		this.guiShape = shape;
 		Random r = new Random();
-		this.time = 3000 + r.nextInt(30000);
+		this.time = 5000 + r.nextInt(30000);
 	}
 
 	/*
@@ -89,7 +89,7 @@ public class Machine implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName());
+		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName() + " time: " +this.time);
 		//long startTime = System.currentTimeMillis();
 		if(this.Lock != null) {
 			System.out.println("first queue lock");
@@ -108,35 +108,37 @@ public class Machine implements Runnable {
 	}
 	
 	private void runinstead (Object Lock) {
-		//long startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 		synchronized (Lock) {
 			try {
 				this.guiShape.setColor(this.product.getFxcolor());
 				// System.out.println(this.product.getFirstName()+" "+this.product.getColor());
 				// this.guiShape.getShape().setStyle("-fx-background-color:"+this.product.getColor()+";");
-				  /*long t = this.time-(System.currentTimeMillis()-startTime);
+				  long t = this.time-(System.currentTimeMillis()-startTime);
 				  while (t>0) {
-					  Lock.wait(1000);
 					  String ti = Long.toString(t/1000);
 					  System.out.println(ti);
 					  this.guiShape.setText(ti);
+					  Lock.wait(1000);
 					  t =this.time-(System.currentTimeMillis()-startTime); 
-				  }*/
-				Lock.wait(this.time);
+				  }
+				//Lock.wait(this.time);
 				// System.out.println("End " + /*this.Name+" "+*/this.product.getFirstName());
 				while (this.nextQueue.isFullProductQueue()) {Lock.wait(1000);}
 				this.nextQueue.getProductsQueue().add(this.product);
 				// this.guiShape.setText(" ");
 				System.out.println("Machine " + this.guiShape.getTextString() + " ends " + this.product.getFirstName());
 				this.guiShape.setColor(Color.GRAY);
+				//Lock.wait(50);
 				this.avalible = true;
-				synchronized (nextQueue) {
+				new Thread(this.nextQueue).start();
+				/*synchronized (nextQueue) {
 					new Thread(this.nextQueue).start();
-				}
+				}*/
 				//Lock.notifyAll();
 				if (this.Lock!=null) {
 					synchronized (this.Lock) {
-						this.Lock.notifyAll();
+						this.Lock.notify();
 					}
 				}
 				if (ThreadLock!=null) {
@@ -144,6 +146,7 @@ public class Machine implements Runnable {
 						this.ThreadLock.notifyAll();
 					}
 				}
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
