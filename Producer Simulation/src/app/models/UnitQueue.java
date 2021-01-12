@@ -168,35 +168,36 @@ public class UnitQueue implements Runnable {
 	public void run() {
 		while (!this.productsQueue.isEmpty()/* && !this.lastQueue */) {
 			if (this.lastQueue) {
-				
 				for (int i = 0; i < this.productsQueue.size(); i++) {
 					Originator.getInstance().getState().getFinishedProducts().add(this.productsQueue.poll());
 				}
 				System.out.println(Originator.getInstance().getState().getFinishedProducts());
 			}
-			synchronized (productsQueue) {
-				Product product = this.productsQueue.poll();
-				if (product != null) {
-					synchronized (Originator.getInstance().Lock) {
-						Machine available = getAvailableMachine();
-						while (available == null) {
-							try {
-								System.out.println("thread queue "+this.Name+"wait");
-								Originator.getInstance().Lock.wait();
-								System.out.println("thread queue "+this.Name+"NOt wait");
-								available = getAvailableMachine();
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+			else {
+				synchronized (productsQueue) {
+					Product product = this.productsQueue.poll();
+					if (product != null) {
+						synchronized (Originator.getInstance().Lock) {
+							Machine available = getAvailableMachine();
+							while (available == null) {
+								try {
+									System.out.println("thread queue "+this.Name+" wait");
+									Originator.getInstance().Lock.wait();
+									System.out.println("thread queue "+this.Name+"NOt wait");
+									available = getAvailableMachine();
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 							}
+							available.setProduct(product);
+							available.setThreadLock(Originator.getInstance().Lock);
+							available.setAvailable(false);
+							// synchronized (available.getProduct()) {
+							new Thread(available).start();
 						}
-						available.setProduct(product);
-						available.setThreadLock(Originator.getInstance().Lock);
-						available.setAvailable(false);
-						// synchronized (available.getProduct()) {
-						new Thread(available).start();
+						
 					}
-					
 				}
 			}
 		}

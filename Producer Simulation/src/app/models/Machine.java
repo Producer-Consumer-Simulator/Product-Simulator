@@ -99,10 +99,10 @@ public class Machine implements Runnable {
 			System.out.println("thread queue lock");
 			runinstead(this.ThreadLock);
 		}
-		else {
+		/*else {
 			System.out.println("thththth queue lock");
 			runinstead(this);
-		}
+		}*/
 		
 
 	}
@@ -133,7 +133,7 @@ public class Machine implements Runnable {
 				synchronized (nextQueue) {
 					new Thread(this.nextQueue).start();
 				}
-				Lock.notifyAll();
+				//Lock.notifyAll();
 				if (this.Lock!=null) {
 					synchronized (this.Lock) {
 						this.Lock.notifyAll();

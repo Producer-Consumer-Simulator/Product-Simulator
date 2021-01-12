@@ -193,7 +193,7 @@ public class methods {
 		UnitBuilder ub = new UnitBuilder();
 		treetoUnitBuilder(info.root, ub);
 		Unit u = ub.toUnit();
-		
+		Originator.getInstance().setState(u);
 		/*Product p1 = new Product("p1"), p2 = new Product("p2"),
 		p3 = new Product("p3"), p4 = new Product("p4"),
 		p5 = new Product("p5"), p6 = new Product("p6"),
@@ -219,7 +219,7 @@ public class methods {
 		u.addProduct(p13); u.addProduct(p14); u.addProduct(p15);
 		u.addProduct(p16); */
 		System.out.println(u);
-		Originator.getInstance().setState(u);
+		
 		/*Thread t = new Thread (new ProducerConsumer());
 		t.start(); */
 		//ProducerConsumer pc = ProducerConsumer.getInstance();
