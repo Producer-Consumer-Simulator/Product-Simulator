@@ -15,7 +15,7 @@ public class DecoShape {
 	private Shape shape;
 	private Text text = new Text();
 	private char type;
-	private ArrayList<Product> products;
+	private ArrayList<Product> products = new ArrayList<Product>();
 	private ArrayList<DecoShape> next = new ArrayList<DecoShape>();
 	private ArrayList<DecoShape> previous = new ArrayList<DecoShape>();
 	public boolean dragable = true;
@@ -25,16 +25,13 @@ public class DecoShape {
 	}
 
 	public void setProducts(Product product) {
-		if (this.shape.getId().charAt(0) == 'Q')
-			this.products.add(product);
-		else {
-			if (this.products.size() >= 1) {
-				System.out.println("Machine can't handle more than one product at the same time");
-				return;
-			}
-		}
+		this.products.add(product);
 	}
-
+	public void removeFirstProduct() {
+		if(this.products.isEmpty())
+			throw new RuntimeException("Tring to delete from empty list of products");
+		this.products.remove(0);
+	}
 	public Text getText() {
 		return this.text;
 	}

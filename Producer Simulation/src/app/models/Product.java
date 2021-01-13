@@ -29,6 +29,7 @@ public class Product {
 	}
 
 	public Product(String fName) {
+		if(fName.length() > 10) fName = fName.substring(0,10);
 		this.name = new SimpleStringProperty(fName);
 		Random r = new Random();
 		int red =  r.nextInt(255);
@@ -42,6 +43,7 @@ public class Product {
 	}
 
 	public void setFirstName(String fName) {
+		if(fName.length() > 10) fName = fName.substring(0,10);
 		name.set(fName);
 	}
 

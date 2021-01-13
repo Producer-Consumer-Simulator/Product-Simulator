@@ -15,7 +15,9 @@ public class ProducerConsumer {
 			instance = new ProducerConsumer();
 		return instance;
 	}
-	
+	public void reset() {
+		u = Originator.getInstance().getState();
+	}
 	public void produce(Product p) {
 		synchronized (this) {
 			while (u.getFirstQueue().isFullProductQueue()) {

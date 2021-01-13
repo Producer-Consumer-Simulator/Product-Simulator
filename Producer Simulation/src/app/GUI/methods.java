@@ -4,32 +4,31 @@ import java.util.ArrayList;
 
 import app.GUI.model.DecoShape;
 import app.GUI.model.InfoHolder;
-import app.services.*;
 import app.models.Product;
 import app.models.Unit;
+import app.services.ProducerConsumer;
 import app.services.UnitBuilder;
 import app.services.SnapShot.Originator;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
 import javafx.scene.Cursor;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
-import javafx.util.Callback;
 
 public class methods {
 	
-	private InfoHolder info;
+	private static methods instance;
+	private InfoHolder info = InfoHolder.getInstance();
 	public char mode = 'D';// 'D' for drag, 'L' for line
 	class Delta { double x, y; }
 	boolean FirstNodeClicked = false;
 	
-	public methods(InfoHolder info) {
-		this.info = info;
+	private methods() {}
+	public static methods getInstance() {
+		if(instance == null) instance = new methods();
+		return instance;
 	}
 	
 	public void HandleShape(DecoShape shape) {
@@ -37,6 +36,11 @@ public class methods {
 		final Delta dragDelta = new Delta();
 		
 		shape.getNode().setOnMousePressed(e -> {
+			
+			info.productsQueue.getItems().clear();
+			for(Product pro : shape.getProducts())
+				addproductGrpah(pro, 'Q');
+			
 			if(mode == 'D' && shape.dragable) {
 			    // record a delta distance for the drag and drop operation.
 			    dragDelta.x = shape.getNode().getLayoutX() - e.getSceneX();
@@ -145,56 +149,29 @@ public class methods {
 		polygon.toBack();
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes"})
-	public void fillTable(ArrayList<Product> products) {
-		
-		final ObservableList<Product> data = fillData(products);
-		
-		info.table.setEditable(true);
-		 
-        TableColumn firstNameCol = new TableColumn("First Name");
-        firstNameCol.setStyle("-fx-alignment: CENTER");
-        firstNameCol.prefWidthProperty().bind(info.table.widthProperty().divide(1));
-        firstNameCol.setMinWidth(100);
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("firstName"));
-        info.table.setItems(data);
-        
-        firstNameCol.setCellFactory(new Callback<TableColumn, TableCell>() {
-            public TableCell call(TableColumn param) {
-                return new TableCell<Product, String>() {
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-
-                            setText(item);
-                            TableRow<Product> row = getTableRow();
-                        	if(row.getIndex()>=0&&row.getIndex()<data.size())
-                        		row.setStyle("-fx-background-color:"+data.get(row.getIndex()).getColor()+";");
-                    }
-                };
-            }
-        });
-        info.table.getColumns().addAll(firstNameCol);
-        info.table.relocate(1000, 400);
-		info.table.setId("my-table");
-        info.table.setPrefWidth(300);
-        info.table.setPrefHeight(250);
-	}
-	
-	private ObservableList<Product> fillData(ArrayList<Product> products){
-		final ObservableList<Product> data = FXCollections.observableArrayList();
-		for(int i=0; i<products.size(); i++) {
-			data.add(products.get(i));
-		}
-		return data;
+	public void addproductGrpah(Product product, char direction) {
+		Color tColor = Color.BLACK;
+		StackPane sp = info.shapes.productRow(product.getFirstName(), tColor, product.getFxcolor());
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				switch (direction) {
+					case 'I': info.productsGraphI.getItems().add(sp); break;
+					case 'O': info.productsGraphO.getItems().add(sp); break;
+					case 'Q': info.productsQueue.getItems().add(sp); break;
+				}
+			}
+		});
 	}
 	
 	public static void Simulate() {
 		InfoHolder info = InfoHolder.getInstance();
-		UnitBuilder ub = new UnitBuilder();
+		UnitBuilder ub = new UnitBuilder(new Unit());
 		treetoUnitBuilder(info.root, ub);
 		Unit u = ub.toUnit();
 		Originator.getInstance().setState(u);
 		ProducerConsumer pc = ProducerConsumer.getInstance();
+		pc.reset();
 		System.out.println(u);
 		Thread t2 = new Thread(new Runnable() { 
             @Override
@@ -224,7 +201,8 @@ public class methods {
 				if(root.getType() == 'M' && !root.visited) {
 					root.visited = true;
 					for(int j = 0 ; j < root.getPrevious().size() ; j++) {
-					ub.CreateMachine(root,root.getTextString(),root.getPrevious().get(j).getTextString(), root.getNext().get(0).getTextString());}
+						ub.CreateMachine(root,root.getTextString(),root.getPrevious().get(j), root.getNext().get(0));
+					}
 				}
 				treetoUnitBuilder(root.getNext().get(i), ub);
 			}

@@ -30,3 +30,6 @@
 	-fx-border-width:3px;
 	-fx-border-radius:10px;
 }
+.list-cell{
+	-fx-padding: 1px;
+}

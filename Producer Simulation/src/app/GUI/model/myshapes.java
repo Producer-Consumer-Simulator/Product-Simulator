@@ -2,16 +2,20 @@ package app.GUI.model;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class myshapes {
 
@@ -25,8 +29,10 @@ public class myshapes {
 	public Button LineButton;
 	public Button addproduct;
 	public Button run;
+	public Button reset;
 	public TextField textField;
-
+	public ListView<StackPane> tempList;
+	
 	public Button AddQbutton() {
 		QButton = new Button("Add Q");
 		return QButton;
@@ -82,40 +88,71 @@ public class myshapes {
 		hbox.setStyle("-fx-background-color: #FFF;");
 
 		Button buttonqueue = AddQbutton();
-		buttonqueue.setPrefSize(150, 40);
+		buttonqueue.setPrefSize(120, 40);
 		buttonqueue.getStyleClass().add("btn-save");
 
 		Button buttonmachine = AddMbutton();
-		buttonmachine.setPrefSize(150, 40);
+		buttonmachine.setPrefSize(120, 40);
 		buttonmachine.getStyleClass().add("btn-save");
 
 		Button buttonmove = AddDrageButton();
-		buttonmove.setPrefSize(150, 40);
+		buttonmove.setPrefSize(120, 40);
 		buttonmove.getStyleClass().add("btn-save");
 
 		Button buttonconect = AddLineButton();
-		buttonconect.setPrefSize(150, 40);
+		buttonconect.setPrefSize(120, 40);
 		buttonconect.getStyleClass().add("btn-save");
 
 		run = new Button("Run");
-		run.setPrefSize(150, 40);
+		run.setPrefSize(120, 40);
 		run.getStyleClass().add("btn-save");
-
+		
+		reset = new Button("Reset");
+		reset.setPrefSize(120, 40);
+		reset.getStyleClass().add("btn-save");
+		
 		Region spacer = new Region();
 		HBox.setHgrow(spacer, Priority.ALWAYS);
 
 		addproduct = new Button("add product");
-		addproduct.setPrefSize(150, 40);
+		addproduct.setPrefSize(120, 40);
 		addproduct.getStyleClass().add("btn-save");
 
 		textField = new TextField();
 		textField.getStyleClass().add("text-field");
 		textField.setPrefSize(250, 40);
 		textField.setPromptText("product name");
-		hbox.getChildren().addAll(buttonqueue, buttonmachine, buttonmove, buttonconect, run, spacer, textField,
+		hbox.getChildren().addAll(buttonqueue, buttonmachine, buttonmove, buttonconect, run, reset, spacer, textField,
 				addproduct);
 
 		return hbox;
+	}
+	public StackPane productRow(String name, Color tColor, Color bcolor) {
+		//text
+		Text text = new Text(name);
+		text.setFill(tColor);
+		text.setStyle("-fx-font: 20 arial;");
+		//background and border
+		Rectangle rect = new Rectangle();
+		rect.setWidth(115); rect.setHeight(30);
+		rect.setFill(bcolor);
+		rect.setStroke(Color.BLACK);
+		rect.setStrokeWidth(2);
+	
+		return new StackPane(rect,text);
+	}
+	public VBox productList(String name) {
+		Label title = new Label(name);
+		ListView<StackPane> list = new ListView<StackPane>();
+		list.setMaxHeight(280); list.setMaxWidth(150);
+		tempList = list;
+		return new VBox(title,list);
+	}
+	public HBox productInfo(VBox v1, VBox v2, VBox v3) {
+		HBox pro = new HBox(v1,v2,v3);
+		pro.getStyleClass().add("hbox");
+		pro.setStyle("-fx-padding: 5px");
+		return pro;
 	}
 
 }

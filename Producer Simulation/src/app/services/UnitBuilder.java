@@ -18,21 +18,21 @@ public class UnitBuilder {
 		this.OurUnit = unit;
 	}
 	
-	public void CreateMachine(DecoShape shape,String Name,String PrevQueueName ,String NextQueueName) {
+	public void CreateMachine(DecoShape shape,String Name,DecoShape PrevQueue ,DecoShape NextQueue) {
 		Machine m = this.OurUnit.getMachine(Name);
 		if (m == null) {
 			m = new Machine(shape,Name);
 		}
-		UnitQueue prev = this.OurUnit.getQueue(PrevQueueName);
+		UnitQueue prev = this.OurUnit.getQueue(PrevQueue.getTextString());
 		if (prev == null) {
-			prev = new UnitQueue(PrevQueueName);
+			prev = new UnitQueue(PrevQueue, PrevQueue.getTextString());
 			addQueue(prev);
 		}
 		prev.addAvailableMachine(m);
 		prev.lastQueue = false;
-		UnitQueue next = this.OurUnit.getQueue(NextQueueName);
+		UnitQueue next = this.OurUnit.getQueue(NextQueue.getTextString());
 		if (next == null) {
-			next = new UnitQueue(NextQueueName);
+			next = new UnitQueue(NextQueue, NextQueue.getTextString());
 			next.lastQueue = true;
 			addQueue(next);
 		}

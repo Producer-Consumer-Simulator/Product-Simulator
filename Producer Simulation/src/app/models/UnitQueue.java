@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import app.GUI.methods;
+import app.GUI.model.DecoShape;
 import app.services.SnapShot.Originator;
 
 public class UnitQueue implements Runnable {
@@ -11,11 +13,13 @@ public class UnitQueue implements Runnable {
 	private String Name;
 	private BlockingQueue<Product> productsQueue;
 	private ArrayList<Machine> availableMachines;
+	private DecoShape guiShape;
 	public boolean lastQueue = false;
 
 	private Object Lock = new Object();
 
-	public UnitQueue(String Name) {
+	public UnitQueue(DecoShape shape, String Name) {
+		this.guiShape = shape;
 		this.Name = Name;
 		this.productsQueue = new ArrayBlockingQueue<Product>(10);
 		this.availableMachines = new ArrayList<Machine>();
@@ -35,10 +39,12 @@ public class UnitQueue implements Runnable {
 
 	public void addProduct(Product p) {
 		this.productsQueue.add(p);
+		this.guiShape.setProducts(p);
 	}
 
 	public void StartQueue(Product p) {
 		this.productsQueue.add(p);
+		this.guiShape.setProducts(p);
 		new Thread(this).start();
 	}
 
@@ -84,6 +90,7 @@ public class UnitQueue implements Runnable {
 				}
 			}
 			available.StartMachine(p, Lock);
+			this.guiShape.removeFirstProduct();
 		}
 
 	}
@@ -109,7 +116,9 @@ public class UnitQueue implements Runnable {
 			synchronized (productsQueue) {
 				if (this.lastQueue) {
 					for (int i = 0; i < this.productsQueue.size(); i++) {
+						methods.getInstance().addproductGrpah(this.productsQueue.peek(), 'O');
 						Originator.getInstance().getState().getFinishedProducts().add(this.productsQueue.poll());
+						this.guiShape.removeFirstProduct();
 					}
 					System.out.println(Originator.getInstance().getState().getFinishedProducts());
 				} else {
@@ -128,6 +137,7 @@ public class UnitQueue implements Runnable {
 								}
 							}
 							available.StartMachine(product, Originator.getInstance().Lock);
+							this.guiShape.removeFirstProduct();
 						}
 
 					}

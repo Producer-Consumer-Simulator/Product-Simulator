@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import app.models.Product;
 import javafx.scene.Group;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.StackPane;
 
 public class InfoHolder {
 
@@ -25,7 +26,9 @@ public class InfoHolder {
 	public int QCounter = 1;
 	public int Mcounter = 1;
 	public DecoShape[] twosides = new DecoShape[2];
-	public TableView<Product> table;
+	public ListView<StackPane> productsGraphI;
+	public ListView<StackPane> productsGraphO;
+	public ListView<StackPane> productsQueue;
 	public ArrayList<Product> productInput = new ArrayList<Product>();
 	// line
 	double[] lineCo = new double[4];

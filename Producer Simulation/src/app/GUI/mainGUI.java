@@ -10,8 +10,8 @@ import app.models.Product;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -32,13 +32,22 @@ public class mainGUI extends Application {
 		shapes.y = 100;
 		Group drawingArea = new Group();
 		InfoHolder info = InfoHolder.getInstance();
-		// table
-		info.table = new TableView<Product>();
-		// text null
+		//input
+		VBox productI = shapes.productList("Input");
+		info.productsGraphI = shapes.tempList;
+		//output
+		VBox productO = shapes.productList("Output");
+		info.productsGraphO = shapes.tempList;
+		//Queue
+		VBox productQ = shapes.productList("Queue");
+		info.productsQueue = shapes.tempList;
+		//product input/output/queue holder
+		HBox productsInfo = shapes.productInfo(productI, productO, productQ);
+		productsInfo.setLayoutX(840); productsInfo.setLayoutY(340);
 
 		info.drawingArea = drawingArea;
 		info.shapes = shapes;
-		methods method = new methods(info);
+		methods method = methods.getInstance();
 
 		// toolbar and its properties
 		HBox toolbar = shapes.toolbar();
@@ -93,7 +102,7 @@ public class mainGUI extends Application {
 			if (!text.equals(textNull)) {
 				Product p = new Product(text);
 				info.productInput.add(p);
-				method.fillTable(info.productInput);
+				method.addproductGrpah(p, 'I');
 				if(runcheck) {
 					ProducerConsumer pc = ProducerConsumer.getInstance();
 					Thread t1 = new Thread(new Runnable() { 
@@ -107,12 +116,23 @@ public class mainGUI extends Application {
 				}		
 			}
 		});
+		shapes.reset.setOnMouseClicked(e ->{
+			runcheck=false;
+			drawingArea.getChildren().clear();
+			info.productInput = new ArrayList<Product>();
+			info.productsGraphI.getItems().clear();
+			info.productsGraphO.getItems().clear();
+			info.productsQueue.getItems().clear();
+			info.root = null;
+			info.QCounter = 1;
+			info.Mcounter = 1;
+		});
 
 		textNull = shapes.textField.getText();
-		method.fillTable(info.productInput);
 		Group container = new Group();
-		container.getChildren().addAll(toolbar, drawingArea, info.table);
-
+		container.getChildren().addAll(toolbar, drawingArea, productsInfo);
+		toolbar.toFront(); productsInfo.toFront();
+		
 		Scene scene = new Scene(container, x, y);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		window.setScene(scene);
