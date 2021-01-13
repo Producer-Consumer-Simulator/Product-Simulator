@@ -22,7 +22,7 @@ public class Machine implements Runnable {
 		this.Name = Name;
 		this.guiShape = shape;
 		Random r = new Random();
-		this.time = 5000 + r.nextInt(10000);
+		this.time = 5000 + r.nextInt(30000);
 	}
 
 	public UnitQueue getNextQueue() {
@@ -66,7 +66,7 @@ public class Machine implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Machine " + this.Name + " starts " + this.product.getFirstName()
+		System.out.println("Machine " + this.guiShape.getTextString() + " starts " + this.product.getFirstName()
 				+ " time: " + this.time);
 		if (this.Lock != null) {
 			runInstead(this/* .Lock */);
@@ -116,6 +116,7 @@ public class Machine implements Runnable {
 				long t = this.time - (System.currentTimeMillis() - StartTime);
 				while (t > 0) {
 					String ti = Long.toString(t / 1000);
+					System.out.println(ti);
 					Platform.runLater(() -> {
 						this.guiShape.setText(ti);
 					});
