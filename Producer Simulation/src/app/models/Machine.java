@@ -116,7 +116,7 @@ public class Machine implements Runnable {
 				long t = this.time - (System.currentTimeMillis() - StartTime);
 				while (t > 0) {
 					String ti = Long.toString(t / 1000);
-					System.out.println(ti);
+					//System.out.println(ti);
 					Platform.runLater(() -> {
 						this.guiShape.setText(ti);
 					});

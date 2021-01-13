@@ -9,6 +9,7 @@ public class Product {
 
 	private Color fxcolor ;
 	private SimpleStringProperty name;
+	
 	public String getColor() {
 		StringBuilder color = new StringBuilder();
 		color.append('#');
