@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="app.GUI.model.myshapes" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/GUI/model/myshapes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="556" width="271" x="-57" y="1932"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="app.services.SnapShot.CareTaker" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/services/SnapShot/CareTaker.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="137" x="155" y="58"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="app.GUI.mainGUI" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/GUI/mainGUI.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="170" x="537" y="58"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="app.services.SnapShot.Memento" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/services/SnapShot/Memento.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="137" x="155" y="294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="app.models.Machine" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/models/Machine.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="488" y="1675"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="app.services.SnapShot.Originator" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/services/SnapShot/Originator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="247" x="332" y="294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="app.GUI.methods" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/GUI/methods.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="290" x="-70" y="974"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="app.GUI.model.DecoShape" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/GUI/model/DecoShape.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="444" y="2248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="app.services.UnitBuilder" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/services/UnitBuilder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="394" x="629" y="294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="app.GUI.methods.Delta" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/GUI/methods.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="104" x="-142" y="1426"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="app.models.Product" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/models/Product.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="972" y="2120"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="app.models.Unit" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/models/Unit.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="292" x="629" y="576"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="app.AppMain" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/AppMain.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="130" x="953" y="58"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="app.GUI.model.InfoHolder" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/GUI/model/InfoHolder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="258" x="2" y="1426"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="app.services.ProducerConsumer" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/services/ProducerConsumer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="216" x="1063" y="294"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="app.models.UnitQueue" project="Producer Simulation" 
+    file="/Producer Simulation/src/app/models/UnitQueue.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="412" width="317" x="291" y="974"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="18" name="instance"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <bendpoint x="281" y="1459"/>    
+    <bendpoint x="326" y="1773"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="21" name="guiShape"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <bendpoint x="334" y="741"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="24" name="state"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <bendpoint x="735" y="1388"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="27" name="FactoryMachines"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="30" name="next"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="33" name="OurUnit"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="36" name="u"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <bendpoint x="918" y="2296"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="39" name="products"/>      
+      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <bendpoint x="387" y="1434"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="42" name="nextQueue"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="45" name="instance"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <bendpoint x="574" y="595"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="48" name="state"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <bendpoint x="133" y="2172"/>    
+    <bendpoint x="671" y="2188"/>    
+    <bendpoint x="805" y="2190"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="51" name="productInput"/>      
+      <multiplicity id="52" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <bendpoint x="554" y="1925"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="54" name="guiShape"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="57" name="FactoryQueues"/>      
+      <multiplicity id="58" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <bendpoint x="585" y="1932"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="60" name="product"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <bendpoint x="258" y="2091"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="63" name="root"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="66" name="mementoList"/>      
+      <multiplicity id="67" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="69" name="instance"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <bendpoint x="548" y="1426"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="72" name="availableMachines"/>      
+      <multiplicity id="73" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="75" name="info"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <bendpoint x="271" y="1955"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="78" name="twosides"/>      
+      <multiplicity id="79" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="81" name="shapes"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="83">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="10"/>  
+  </nesting>  
+  <association id="84">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="85" name="previous"/>      
+      <multiplicity id="86" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="87">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="88" name="instance"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
+    <bendpoint x="606" y="1426"/>    
+    <bendpoint x="752" y="1801"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="91" name="productsQueue"/>      
+      <multiplicity id="92" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <bendpoint x="960" y="957"/>    
+    <bendpoint x="979" y="1432"/>    
+    <bendpoint x="990" y="1846"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="94" name="FinishedProducts"/>      
+      <multiplicity id="95" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
